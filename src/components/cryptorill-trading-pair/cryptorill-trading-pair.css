@@ -1,0 +1,219 @@
+:host {
+  /* Theme-aware colors - Dark theme (default) */
+  --cryptorill-trading-pair-bg-primary-dark: rgba(15, 23, 42, 0.9);
+  --cryptorill-trading-pair-bg-secondary-dark: rgba(30, 41, 59, 0.6);
+  --cryptorill-trading-pair-border-dark: rgba(255, 255, 255, 0.08);
+  --cryptorill-trading-pair-text-primary-dark: #f8fafc;
+  --cryptorill-trading-pair-text-secondary-dark: #94a3b8;
+  --cryptorill-trading-pair-text-muted-dark: #64748b;
+  --cryptorill-trading-pair-positive-dark: #10b981;
+  --cryptorill-trading-pair-negative-dark: #ef4444;
+  --cryptorill-trading-pair-spread-dark: #f59e0b;
+
+  /* Light theme colors */
+  --cryptorill-trading-pair-bg-primary-light: rgba(255, 255, 255, 0.95);
+  --cryptorill-trading-pair-bg-secondary-light: rgba(248, 250, 252, 0.8);
+  --cryptorill-trading-pair-border-light: rgba(0, 0, 0, 0.08);
+  --cryptorill-trading-pair-text-primary-light: #0f172a;
+  --cryptorill-trading-pair-text-secondary-light: #475569;
+  --cryptorill-trading-pair-text-muted-light: #94a3b8;
+  --cryptorill-trading-pair-positive-light: #059669;
+  --cryptorill-trading-pair-negative-light: #dc2626;
+  --cryptorill-trading-pair-spread-light: #d97706;
+
+  /* Gradient theme colors */
+  --cryptorill-trading-pair-bg-primary-gradient: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
+  --cryptorill-trading-pair-bg-secondary-gradient: rgba(99, 102, 241, 0.1);
+  --cryptorill-trading-pair-border-gradient: rgba(99, 102, 241, 0.2);
+
+  /* Default to dark theme */
+  --cryptorill-trading-pair-bg-primary: var(--cryptorill-trading-pair-bg-primary-dark);
+  --cryptorill-trading-pair-bg-secondary: var(--cryptorill-trading-pair-bg-secondary-dark);
+  --cryptorill-trading-pair-border: var(--cryptorill-trading-pair-border-dark);
+  --cryptorill-trading-pair-text-primary: var(--cryptorill-trading-pair-text-primary-dark);
+  --cryptorill-trading-pair-text-secondary: var(--cryptorill-trading-pair-text-secondary-dark);
+  --cryptorill-trading-pair-text-muted: var(--cryptorill-trading-pair-text-muted-dark);
+  --cryptorill-trading-pair-positive: var(--cryptorill-trading-pair-positive-dark);
+  --cryptorill-trading-pair-negative: var(--cryptorill-trading-pair-negative-dark);
+  --cryptorill-trading-pair-spread: var(--cryptorill-trading-pair-spread-dark);
+
+  --cryptorill-trading-pair-font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --cryptorill-trading-pair-font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+
+  --cryptorill-trading-pair-radius: 12px;
+  --cryptorill-trading-pair-radius-sm: 8px;
+
+  --cryptorill-trading-pair-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --cryptorill-trading-pair-transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  --cryptorill-trading-pair-shadow-md: 0 4px 20px rgba(0, 0, 0, 0.15);
+  --cryptorill-trading-pair-shadow-glow: 0 0 30px rgba(99, 102, 241, 0.12);
+  --cryptorill-trading-pair-backdrop: blur(16px) saturate(180%);
+
+  display: block;
+  font-family: var(--cryptorill-trading-pair-font-primary);
+  width: 100%;
+  max-width: 480px;
+  min-width: 320px;
+}
+
+/* Theme variants */
+.cr-trading-pair--theme-dark {
+  --cryptorill-trading-pair-bg-primary: var(--cryptorill-trading-pair-bg-primary-dark);
+  --cryptorill-trading-pair-bg-secondary: var(--cryptorill-trading-pair-bg-secondary-dark);
+  --cryptorill-trading-pair-border: var(--cryptorill-trading-pair-border-dark);
+  --cryptorill-trading-pair-text-primary: var(--cryptorill-trading-pair-text-primary-dark);
+  --cryptorill-trading-pair-text-secondary: var(--cryptorill-trading-pair-text-secondary-dark);
+  --cryptorill-trading-pair-text-muted: var(--cryptorill-trading-pair-text-muted-dark);
+  --cryptorill-trading-pair-positive: var(--cryptorill-trading-pair-positive-dark);
+  --cryptorill-trading-pair-negative: var(--cryptorill-trading-pair-negative-dark);
+  --cryptorill-trading-pair-spread: var(--cryptorill-trading-pair-spread-dark);
+}
+
+.cr-trading-pair--theme-light {
+  --cryptorill-trading-pair-bg-primary: var(--cryptorill-trading-pair-bg-primary-light);
+  --cryptorill-trading-pair-bg-secondary: var(--cryptorill-trading-pair-bg-secondary-light);
+  --cryptorill-trading-pair-border: var(--cryptorill-trading-pair-border-light);
+  --cryptorill-trading-pair-text-primary: var(--cryptorill-trading-pair-text-primary-light);
+  --cryptorill-trading-pair-text-secondary: var(--cryptorill-trading-pair-text-secondary-light);
+  --cryptorill-trading-pair-text-muted: var(--cryptorill-trading-pair-text-muted-light);
+  --cryptorill-trading-pair-positive: var(--cryptorill-trading-pair-positive-light);
+  --cryptorill-trading-pair-negative: var(--cryptorill-trading-pair-negative-light);
+  --cryptorill-trading-pair-spread: var(--cryptorill-trading-pair-spread-light);
+}
+
+.cr-trading-pair--theme-gradient {
+  --cryptorill-trading-pair-bg-primary: var(--cryptorill-trading-pair-bg-primary-gradient);
+  --cryptorill-trading-pair-bg-secondary: var(--cryptorill-trading-pair-bg-secondary-gradient);
+  --cryptorill-trading-pair-border: var(--cryptorill-trading-pair-border-gradient);
+}
+
+/* Base Card Styles */
+.cryptorill-trading-pair {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: var(--cryptorill-trading-pair-radius);
+  background: var(--cryptorill-trading-pair-bg-primary);
+  border: 1px solid var(--cryptorill-trading-pair-border);
+  backdrop-filter: var(--cryptorill-trading-pair-backdrop);
+  -webkit-backdrop-filter: var(--cryptorill-trading-pair-backdrop);
+  box-shadow: var(--cryptorill-trading-pair-shadow-md);
+  overflow: hidden;
+  transition: all var(--cryptorill-trading-pair-transition-base);
+}
+
+.cryptorill-trading-pair:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--cryptorill-trading-pair-shadow-md), var(--cryptorill-trading-pair-shadow-glow);
+}
+
+/* Icons Section */
+.cr-trading-pair__icons {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.cr-trading-pair__base-icon {
+  z-index: 2;
+}
+
+.cr-trading-pair__quote-icon {
+  z-index: 1;
+  margin-left: -8px;
+  opacity: 0.8;
+}
+
+/* Size variants for icons spacing */
+.cr-trading-pair--lg .cr-trading-pair__quote-icon {
+  margin-left: -12px;
+}
+
+.cr-trading-pair--sm .cr-trading-pair__quote-icon {
+  margin-left: -6px;
+}
+
+/* Pair Name */
+.cr-trading-pair__name {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-family: var(--cryptorill-trading-pair-font-mono);
+  font-weight: 600;
+}
+
+.cr-trading-pair__base {
+  color: var(--cryptorill-trading-pair-text-primary);
+}
+
+.cr-trading-pair__separator {
+  color: var(--cryptorill-trading-pair-text-muted);
+}
+
+.cr-trading-pair__quote {
+  color: var(--cryptorill-trading-pair-text-secondary);
+}
+
+/* Size variants for name */
+.cr-trading-pair--lg .cr-trading-pair__name {
+  font-size: 16px;
+}
+
+.cr-trading-pair--md .cr-trading-pair__name {
+  font-size: 14px;
+}
+
+.cr-trading-pair--sm .cr-trading-pair__name {
+  font-size: 12px;
+}
+
+/* Price Section */
+.cr-trading-pair__price-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  margin-left: auto;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Spread Section */
+.cr-trading-pair__spread {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 8px;
+  background: var(--cryptorill-trading-pair-bg-secondary);
+  border-radius: var(--cryptorill-trading-pair-radius-sm);
+  margin-left: 8px;
+}
+
+.cr-trading-pair__spread-label {
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--cryptorill-trading-pair-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cr-trading-pair__spread-value {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--cryptorill-trading-pair-spread);
+  font-family: var(--cryptorill-trading-pair-font-mono);
+}
+
+/* Direction variants */
+.cr-trading-pair--up {
+  border-left: 3px solid var(--cryptorill-trading-pair-positive);
+}
+
+.cr-trading-pair--down {
+  border-left: 3px solid var(--cryptorill-trading-pair-negative);
+}

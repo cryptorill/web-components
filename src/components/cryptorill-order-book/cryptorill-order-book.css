@@ -1,0 +1,229 @@
+:host {
+  /* Theme-aware colors - Dark theme (default) */
+  --cryptorill-order-book-bg-primary-dark: rgba(15, 23, 42, 0.95);
+  --cryptorill-order-book-bg-secondary-dark: rgba(30, 41, 59, 0.8);
+  --cryptorill-order-book-border-dark: rgba(255, 255, 255, 0.08);
+  --cryptorill-order-book-text-primary-dark: #f8fafc;
+  --cryptorill-order-book-text-secondary-dark: #94a3b8;
+  --cryptorill-order-book-text-muted-dark: #64748b;
+  --cryptorill-order-book-bid-dark: #10b981;
+  --cryptorill-order-book-ask-dark: #ef4444;
+  --cryptorill-order-book-spread-dark: #f59e0b;
+
+  /* Light theme colors */
+  --cryptorill-order-book-bg-primary-light: rgba(255, 255, 255, 0.98);
+  --cryptorill-order-book-bg-secondary-light: rgba(248, 250, 252, 0.9);
+  --cryptorill-order-book-border-light: rgba(0, 0, 0, 0.08);
+  --cryptorill-order-book-text-primary-light: #0f172a;
+  --cryptorill-order-book-text-secondary-light: #475569;
+  --cryptorill-order-book-text-muted-light: #94a3b8;
+  --cryptorill-order-book-bid-light: #059669;
+  --cryptorill-order-book-ask-light: #dc2626;
+  --cryptorill-order-book-spread-light: #d97706;
+
+  /* Gradient theme colors */
+  --cryptorill-order-book-bg-primary-gradient: linear-gradient(180deg, rgba(30, 41, 59, 0.98) 0%, rgba(15, 23, 42, 0.98) 100%);
+  --cryptorill-order-book-bg-secondary-gradient: rgba(99, 102, 241, 0.08);
+  --cryptorill-order-book-border-gradient: rgba(99, 102, 241, 0.15);
+
+  /* Default to dark theme */
+  --cryptorill-order-book-bg-primary: var(--cryptorill-order-book-bg-primary-dark);
+  --cryptorill-order-book-bg-secondary: var(--cryptorill-order-book-bg-secondary-dark);
+  --cryptorill-order-book-border: var(--cryptorill-order-book-border-dark);
+  --cryptorill-order-book-text-primary: var(--cryptorill-order-book-text-primary-dark);
+  --cryptorill-order-book-text-secondary: var(--cryptorill-order-book-text-secondary-dark);
+  --cryptorill-order-book-text-muted: var(--cryptorill-order-book-text-muted-dark);
+  --cryptorill-order-book-bid: var(--cryptorill-order-book-bid-dark);
+  --cryptorill-order-book-ask: var(--cryptorill-order-book-ask-dark);
+  --cryptorill-order-book-spread: var(--cryptorill-order-book-spread-dark);
+
+  --cryptorill-order-book-font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --cryptorill-order-book-font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+
+  --cryptorill-order-book-radius: 12px;
+  --cryptorill-order-book-radius-sm: 8px;
+
+  --cryptorill-order-book-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  --cryptorill-order-book-shadow-md: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --cryptorill-order-book-backdrop: blur(20px) saturate(180%);
+
+  display: block;
+  font-family: var(--cryptorill-order-book-font-primary);
+  width: 100%;
+  max-width: 480px;
+}
+
+/* Theme variants */
+.cr-order-book--theme-dark {
+  --cryptorill-order-book-bg-primary: var(--cryptorill-order-book-bg-primary-dark);
+  --cryptorill-order-book-bg-secondary: var(--cryptorill-order-book-bg-secondary-dark);
+  --cryptorill-order-book-border: var(--cryptorill-order-book-border-dark);
+  --cryptorill-order-book-text-primary: var(--cryptorill-order-book-text-primary-dark);
+  --cryptorill-order-book-text-secondary: var(--cryptorill-order-book-text-secondary-dark);
+  --cryptorill-order-book-text-muted: var(--cryptorill-order-book-text-muted-dark);
+  --cryptorill-order-book-bid: var(--cryptorill-order-book-bid-dark);
+  --cryptorill-order-book-ask: var(--cryptorill-order-book-ask-dark);
+  --cryptorill-order-book-spread: var(--cryptorill-order-book-spread-dark);
+}
+
+.cr-order-book--theme-light {
+  --cryptorill-order-book-bg-primary: var(--cryptorill-order-book-bg-primary-light);
+  --cryptorill-order-book-bg-secondary: var(--cryptorill-order-book-bg-secondary-light);
+  --cryptorill-order-book-border: var(--cryptorill-order-book-border-light);
+  --cryptorill-order-book-text-primary: var(--cryptorill-order-book-text-primary-light);
+  --cryptorill-order-book-text-secondary: var(--cryptorill-order-book-text-secondary-light);
+  --cryptorill-order-book-text-muted: var(--cryptorill-order-book-text-muted-light);
+  --cryptorill-order-book-bid: var(--cryptorill-order-book-bid-light);
+  --cryptorill-order-book-ask: var(--cryptorill-order-book-ask-light);
+  --cryptorill-order-book-spread: var(--cryptorill-order-book-spread-light);
+}
+
+.cr-order-book--theme-gradient {
+  --cryptorill-order-book-bg-primary: var(--cryptorill-order-book-bg-primary-gradient);
+  --cryptorill-order-book-bg-secondary: var(--cryptorill-order-book-bg-secondary-gradient);
+  --cryptorill-order-book-border: var(--cryptorill-order-book-border-gradient);
+}
+
+/* Base Container */
+.cryptorill-order-book {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--cryptorill-order-book-bg-primary);
+  border: 1px solid var(--cryptorill-order-book-border);
+  border-radius: var(--cryptorill-order-book-radius);
+  backdrop-filter: var(--cryptorill-order-book-backdrop);
+  -webkit-backdrop-filter: var(--cryptorill-order-book-backdrop);
+  box-shadow: var(--cryptorill-order-book-shadow-md);
+  overflow: hidden;
+}
+
+/* Header */
+.cr-order-book__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 16px 12px;
+  border-bottom: 1px solid var(--cryptorill-order-book-border);
+}
+
+.cr-order-book__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--cryptorill-order-book-text-primary);
+}
+
+.cr-order-book__grouping {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--cryptorill-order-book-text-muted);
+  padding: 4px 8px;
+  background: var(--cryptorill-order-book-bg-secondary);
+  border-radius: var(--cryptorill-order-book-radius-sm);
+}
+
+/* Column Headers */
+.cr-order-book__column-headers {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--cryptorill-order-book-bg-secondary);
+  border-bottom: 1px solid var(--cryptorill-order-book-border);
+}
+
+.cr-order-book__header-cell {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--cryptorill-order-book-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cr-order-book__header-cell--price {
+  color: var(--cryptorill-order-book-text-secondary);
+}
+
+.cr-order-book__header-cell--amount {
+  text-align: center;
+}
+
+.cr-order-book__header-cell--total {
+  text-align: right;
+}
+
+/* Sections */
+.cr-order-book__section {
+  display: flex;
+  flex-direction: column;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.cr-order-book__section--asks {
+  border-bottom: 1px solid var(--cryptorill-order-book-border);
+}
+
+.cr-order-book__section--asks::-webkit-scrollbar,
+.cr-order-book__section--bids::-webkit-scrollbar {
+  width: 4px;
+}
+
+.cr-order-book__section--asks::-webkit-scrollbar-track,
+.cr-order-book__section--bids::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cr-order-book__section--asks::-webkit-scrollbar-thumb,
+.cr-order-book__section--bids::-webkit-scrollbar-thumb {
+  background: var(--cryptorill-order-book-border);
+  border-radius: 2px;
+}
+
+/* Spread Indicator */
+.cr-order-book__spread {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--cryptorill-order-book-bg-secondary);
+  border-bottom: 1px solid var(--cryptorill-order-book-border);
+}
+
+.cr-order-book__spread-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--cryptorill-order-book-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cr-order-book__spread-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cryptorill-order-book-spread);
+  font-family: var(--cryptorill-order-book-font-mono);
+}
+
+.cr-order-book__spread-percent {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--cryptorill-order-book-text-muted);
+  font-family: var(--cryptorill-order-book-font-mono);
+}
+
+/* Empty State */
+.cr-order-book__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 16px;
+}
+
+.cr-order-book__empty-text {
+  font-size: 14px;
+  color: var(--cryptorill-order-book-text-muted);
+}

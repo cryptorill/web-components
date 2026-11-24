@@ -1,0 +1,161 @@
+:host {
+  /* Theme-aware colors */
+  --cryptorill-trade-history-text-light: #f8fafc;
+  --cryptorill-trade-history-text-dark: #0f172a;
+  --cryptorill-trade-history-text-muted-light: #94a3b8;
+  --cryptorill-trade-history-text-muted-dark: #64748b;
+  --cryptorill-trade-history-bg-light: #ffffff;
+  --cryptorill-trade-history-bg-dark: #1e293b;
+  --cryptorill-trade-history-border-light: #e2e8f0;
+  --cryptorill-trade-history-border-dark: #334155;
+  --cryptorill-trade-history-buy: #2ed573;
+  --cryptorill-trade-history-sell: #ff4757;
+
+  /* Default to dark theme colors */
+  --cryptorill-trade-history-text: var(--cryptorill-trade-history-text-light);
+  --cryptorill-trade-history-text-muted: var(--cryptorill-trade-history-text-muted-light);
+  --cryptorill-trade-history-bg: var(--cryptorill-trade-history-bg-dark);
+  --cryptorill-trade-history-border: var(--cryptorill-trade-history-border-dark);
+
+  --cryptorill-trade-history-font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  --cryptorill-trade-history-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  display: block;
+  font-family: var(--cryptorill-trade-history-font-mono);
+}
+
+/* Theme variants */
+.cr-trade-history--theme-dark {
+  --cryptorill-trade-history-text: var(--cryptorill-trade-history-text-light);
+  --cryptorill-trade-history-text-muted: var(--cryptorill-trade-history-text-muted-light);
+  --cryptorill-trade-history-bg: var(--cryptorill-trade-history-bg-dark);
+  --cryptorill-trade-history-border: var(--cryptorill-trade-history-border-dark);
+}
+
+.cr-trade-history--theme-light {
+  --cryptorill-trade-history-text: var(--cryptorill-trade-history-text-dark);
+  --cryptorill-trade-history-text-muted: var(--cryptorill-trade-history-text-muted-dark);
+  --cryptorill-trade-history-bg: var(--cryptorill-trade-history-bg-light);
+  --cryptorill-trade-history-border: var(--cryptorill-trade-history-border-light);
+}
+
+.cr-trade-history--theme-gradient {
+  --cryptorill-trade-history-text: var(--cryptorill-trade-history-text-light);
+  --cryptorill-trade-history-text-muted: var(--cryptorill-trade-history-text-muted-light);
+  --cryptorill-trade-history-bg: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  --cryptorill-trade-history-border: var(--cryptorill-trade-history-border-dark);
+}
+
+.cryptorill-trade-history {
+  background: var(--cryptorill-trade-history-bg);
+  border: 1px solid var(--cryptorill-trade-history-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Header */
+.cr-trade-history__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--cryptorill-trade-history-border);
+}
+
+.cr-trade-history__title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cryptorill-trade-history-text);
+}
+
+.cr-trade-history__pair {
+  font-size: 12px;
+  color: var(--cryptorill-trade-history-text-muted);
+}
+
+/* Table header */
+.cr-trade-history__table-header {
+  display: grid;
+  grid-template-columns: 70px 1fr 1fr;
+  gap: 8px;
+  padding: 8px 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid var(--cryptorill-trade-history-border);
+}
+
+.cr-trade-history__col {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--cryptorill-trade-history-text-muted);
+}
+
+/* Trade list */
+.cr-trade-history__list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.cr-trade-history__row {
+  display: grid;
+  grid-template-columns: 70px 1fr 1fr;
+  gap: 8px;
+  padding: 6px 20px;
+  font-size: 12px;
+  transition: background-color var(--cryptorill-trade-history-transition-fast);
+}
+
+.cr-trade-history__row:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.cr-trade-history__row--buy .cr-trade-history__cell--price {
+  color: var(--cryptorill-trade-history-buy);
+}
+
+.cr-trade-history__row--sell .cr-trade-history__cell--price {
+  color: var(--cryptorill-trade-history-sell);
+}
+
+.cr-trade-history__cell {
+  color: var(--cryptorill-trade-history-text);
+}
+
+.cr-trade-history__cell--time {
+  color: var(--cryptorill-trade-history-text-muted);
+  font-size: 11px;
+}
+
+.cr-trade-history__cell--amount {
+  text-align: right;
+  color: var(--cryptorill-trade-history-text-muted);
+}
+
+/* Empty state */
+.cr-trade-history__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px;
+}
+
+.cr-trade-history__empty-text {
+  font-size: 13px;
+  color: var(--cryptorill-trade-history-text-muted);
+}
+
+/* Scrollbar styling */
+.cr-trade-history__list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.cr-trade-history__list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cr-trade-history__list::-webkit-scrollbar-thumb {
+  background: var(--cryptorill-trade-history-border);
+  border-radius: 2px;
+}

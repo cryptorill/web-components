@@ -1,0 +1,106 @@
+:host {
+  /* Theme-aware colors */
+  --cryptorill-percentage-bar-text-primary-light: #0f172a;
+  --cryptorill-percentage-bar-text-primary-dark: #f8fafc;
+  --cryptorill-percentage-bar-text-secondary-light: #475569;
+  --cryptorill-percentage-bar-text-secondary-dark: #94a3b8;
+  --cryptorill-percentage-bar-track-light: #e2e8f0;
+  --cryptorill-percentage-bar-track-dark: #334155;
+  --cryptorill-percentage-bar-fill-light: #10b981;
+  --cryptorill-percentage-bar-fill-dark: #34d399;
+
+  /* Default to dark theme colors */
+  --cryptorill-percentage-bar-text-primary: var(--cryptorill-percentage-bar-text-primary-dark);
+  --cryptorill-percentage-bar-text-secondary: var(--cryptorill-percentage-bar-text-secondary-dark);
+  --cryptorill-percentage-bar-track: var(--cryptorill-percentage-bar-track-dark);
+  --cryptorill-percentage-bar-fill: var(--cryptorill-percentage-bar-fill-dark);
+
+  --cryptorill-percentage-bar-font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  --cryptorill-percentage-bar-transition-fast: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  display: block;
+  font-family: var(--cryptorill-percentage-bar-font-mono);
+}
+
+/* Theme variants */
+.cr-percentage-bar--theme-dark {
+  --cryptorill-percentage-bar-text-primary: var(--cryptorill-percentage-bar-text-primary-dark);
+  --cryptorill-percentage-bar-text-secondary: var(--cryptorill-percentage-bar-text-secondary-dark);
+  --cryptorill-percentage-bar-track: var(--cryptorill-percentage-bar-track-dark);
+  --cryptorill-percentage-bar-fill: var(--cryptorill-percentage-bar-fill-dark);
+}
+
+.cr-percentage-bar--theme-light {
+  --cryptorill-percentage-bar-text-primary: var(--cryptorill-percentage-bar-text-primary-light);
+  --cryptorill-percentage-bar-text-secondary: var(--cryptorill-percentage-bar-text-secondary-light);
+  --cryptorill-percentage-bar-track: var(--cryptorill-percentage-bar-track-light);
+  --cryptorill-percentage-bar-fill: var(--cryptorill-percentage-bar-fill-light);
+}
+
+.cr-percentage-bar--theme-gradient {
+  --cryptorill-percentage-bar-text-primary: var(--cryptorill-percentage-bar-text-primary-dark);
+  --cryptorill-percentage-bar-text-secondary: var(--cryptorill-percentage-bar-text-secondary-dark);
+  --cryptorill-percentage-bar-track: var(--cryptorill-percentage-bar-track-dark);
+  --cryptorill-percentage-bar-fill: linear-gradient(90deg, #10b981 0%, #34d399 50%, #6ee7b7 100%);
+}
+
+.cryptorill-percentage-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.cr-percentage-bar__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.cr-percentage-bar__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cryptorill-percentage-bar-text-secondary);
+}
+
+.cr-percentage-bar__value {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cryptorill-percentage-bar-text-primary);
+}
+
+.cr-percentage-bar__track {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: var(--cryptorill-percentage-bar-track);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.cr-percentage-bar__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--cryptorill-percentage-bar-fill);
+  border-radius: 3px;
+  transition: width var(--cryptorill-percentage-bar-transition-fast);
+}
+
+.cr-percentage-bar--theme-gradient .cr-percentage-bar__fill {
+  background: linear-gradient(90deg, #10b981 0%, #34d399 50%, #6ee7b7 100%);
+}
+
+/* Custom color support */
+.cr-percentage-bar__fill[style*='background'] {
+  background: var(--custom-color, var(--cryptorill-percentage-bar-fill)) !important;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cr-percentage-bar__fill {
+    transition: none;
+  }
+}

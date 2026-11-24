@@ -1,0 +1,175 @@
+:host {
+  /* Theme-aware colors */
+  --cryptorill-gas-estimator-text-light: #f8fafc;
+  --cryptorill-gas-estimator-text-dark: #0f172a;
+  --cryptorill-gas-estimator-text-muted-light: #94a3b8;
+  --cryptorill-gas-estimator-text-muted-dark: #64748b;
+  --cryptorill-gas-estimator-bg-light: #ffffff;
+  --cryptorill-gas-estimator-bg-dark: #1e293b;
+  --cryptorill-gas-estimator-border-light: #e2e8f0;
+  --cryptorill-gas-estimator-border-dark: #334155;
+  --cryptorill-gas-estimator-primary: #00d4aa;
+  --cryptorill-gas-estimator-success: #2ed573;
+  --cryptorill-gas-estimator-warning: #ffa502;
+  --cryptorill-gas-estimator-danger: #ff4757;
+
+  /* Default to dark theme colors */
+  --cryptorill-gas-estimator-text: var(--cryptorill-gas-estimator-text-light);
+  --cryptorill-gas-estimator-text-muted: var(--cryptorill-gas-estimator-text-muted-light);
+  --cryptorill-gas-estimator-bg: var(--cryptorill-gas-estimator-bg-dark);
+  --cryptorill-gas-estimator-border: var(--cryptorill-gas-estimator-border-dark);
+
+  --cryptorill-gas-estimator-font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  --cryptorill-gas-estimator-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  display: block;
+  font-family: var(--cryptorill-gas-estimator-font-mono);
+}
+
+/* Theme variants */
+.cr-gas-estimator--theme-dark {
+  --cryptorill-gas-estimator-text: var(--cryptorill-gas-estimator-text-light);
+  --cryptorill-gas-estimator-text-muted: var(--cryptorill-gas-estimator-text-muted-light);
+  --cryptorill-gas-estimator-bg: var(--cryptorill-gas-estimator-bg-dark);
+  --cryptorill-gas-estimator-border: var(--cryptorill-gas-estimator-border-dark);
+}
+
+.cr-gas-estimator--theme-light {
+  --cryptorill-gas-estimator-text: var(--cryptorill-gas-estimator-text-dark);
+  --cryptorill-gas-estimator-text-muted: var(--cryptorill-gas-estimator-text-muted-dark);
+  --cryptorill-gas-estimator-bg: var(--cryptorill-gas-estimator-bg-light);
+  --cryptorill-gas-estimator-border: var(--cryptorill-gas-estimator-border-light);
+}
+
+.cr-gas-estimator--theme-gradient {
+  --cryptorill-gas-estimator-text: var(--cryptorill-gas-estimator-text-light);
+  --cryptorill-gas-estimator-text-muted: var(--cryptorill-gas-estimator-text-muted-light);
+  --cryptorill-gas-estimator-bg: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  --cryptorill-gas-estimator-border: var(--cryptorill-gas-estimator-border-dark);
+}
+
+.cryptorill-gas-estimator {
+  background: var(--cryptorill-gas-estimator-bg);
+  border: 1px solid var(--cryptorill-gas-estimator-border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+/* Header */
+.cr-gas-estimator__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--cryptorill-gas-estimator-border);
+  gap: 16px;
+}
+
+.cr-gas-estimator__network {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cr-gas-estimator__network-icon {
+  font-size: 18px;
+  color: var(--cryptorill-gas-estimator-primary);
+}
+
+.cr-gas-estimator__network-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cryptorill-gas-estimator-text);
+}
+
+.cr-gas-estimator__gas-limit {
+  font-size: 11px;
+  color: var(--cryptorill-gas-estimator-text-muted);
+}
+
+/* Options */
+.cr-gas-estimator__options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.cr-gas-estimator__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: transparent;
+  border: 1px solid var(--cryptorill-gas-estimator-border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all var(--cryptorill-gas-estimator-transition-fast);
+  font-family: inherit;
+}
+
+.cr-gas-estimator__option:hover {
+  border-color: var(--cryptorill-gas-estimator-primary);
+  background: rgba(0, 212, 170, 0.05);
+}
+
+.cr-gas-estimator__option--selected {
+  border-color: var(--cryptorill-gas-estimator-primary);
+  background: rgba(0, 212, 170, 0.1);
+}
+
+.cr-gas-estimator__option-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cr-gas-estimator__option-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cryptorill-gas-estimator-text);
+}
+
+.cr-gas-estimator__option-time {
+  font-size: 11px;
+  color: var(--cryptorill-gas-estimator-text-muted);
+}
+
+.cr-gas-estimator__option-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.cr-gas-estimator__fee {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cryptorill-gas-estimator-text);
+}
+
+.cr-gas-estimator__gwei {
+  font-size: 11px;
+  color: var(--cryptorill-gas-estimator-text-muted);
+}
+
+/* Total */
+.cr-gas-estimator__total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--cryptorill-gas-estimator-border);
+}
+
+.cr-gas-estimator__total-label {
+  font-size: 13px;
+  color: var(--cryptorill-gas-estimator-text-muted);
+}
+
+.cr-gas-estimator__total-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--cryptorill-gas-estimator-primary);
+}

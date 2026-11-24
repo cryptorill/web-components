@@ -1,0 +1,114 @@
+:host {
+  /* Theme-aware colors */
+  --cryptorill-balance-text-light: #f8fafc;
+  --cryptorill-balance-text-dark: #0f172a;
+  --cryptorill-balance-text-muted-light: #94a3b8;
+  --cryptorill-balance-text-muted-dark: #64748b;
+  --cryptorill-balance-bg-light: #ffffff;
+  --cryptorill-balance-bg-dark: #1e293b;
+  --cryptorill-balance-border-light: #e2e8f0;
+  --cryptorill-balance-border-dark: #334155;
+  --cryptorill-balance-primary: #00d4aa;
+
+  /* Default to dark theme colors */
+  --cryptorill-balance-text: var(--cryptorill-balance-text-light);
+  --cryptorill-balance-text-muted: var(--cryptorill-balance-text-muted-light);
+  --cryptorill-balance-bg: var(--cryptorill-balance-bg-dark);
+  --cryptorill-balance-border: var(--cryptorill-balance-border-dark);
+
+  --cryptorill-balance-font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  --cryptorill-balance-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  display: block;
+  font-family: var(--cryptorill-balance-font-mono);
+}
+
+/* Theme variants */
+.cr-balance--theme-dark {
+  --cryptorill-balance-text: var(--cryptorill-balance-text-light);
+  --cryptorill-balance-text-muted: var(--cryptorill-balance-text-muted-light);
+  --cryptorill-balance-bg: var(--cryptorill-balance-bg-dark);
+  --cryptorill-balance-border: var(--cryptorill-balance-border-dark);
+}
+
+.cr-balance--theme-light {
+  --cryptorill-balance-text: var(--cryptorill-balance-text-dark);
+  --cryptorill-balance-text-muted: var(--cryptorill-balance-text-muted-dark);
+  --cryptorill-balance-bg: var(--cryptorill-balance-bg-light);
+  --cryptorill-balance-border: var(--cryptorill-balance-border-light);
+}
+
+.cr-balance--theme-gradient {
+  --cryptorill-balance-text: var(--cryptorill-balance-text-light);
+  --cryptorill-balance-text-muted: var(--cryptorill-balance-text-muted-light);
+  --cryptorill-balance-bg: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  --cryptorill-balance-border: var(--cryptorill-balance-border-dark);
+}
+
+.cryptorill-balance {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 20px;
+  background: var(--cryptorill-balance-bg);
+  border: 1px solid var(--cryptorill-balance-border);
+  border-radius: 12px;
+}
+
+/* Label */
+.cr-balance__label {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--cryptorill-balance-text-muted);
+}
+
+/* Amount wrapper */
+.cr-balance__amount-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cr-balance__amount {
+  font-weight: 700;
+  color: var(--cryptorill-balance-text);
+  line-height: 1.2;
+}
+
+.cr-balance__fiat {
+  font-size: 14px;
+  color: var(--cryptorill-balance-text-muted);
+}
+
+/* Size variants */
+.cr-balance--size-small .cr-balance__amount {
+  font-size: 18px;
+}
+
+.cr-balance--size-small .cr-balance__fiat {
+  font-size: 12px;
+}
+
+.cr-balance--size-medium .cr-balance__amount {
+  font-size: 24px;
+}
+
+.cr-balance--size-medium .cr-balance__fiat {
+  font-size: 14px;
+}
+
+.cr-balance--size-large .cr-balance__amount {
+  font-size: 36px;
+}
+
+.cr-balance--size-large .cr-balance__fiat {
+  font-size: 16px;
+}
+
+/* Gradient theme */
+.cr-balance--theme-gradient.cryptorill-balance {
+  background: linear-gradient(135deg, rgba(0, 212, 170, 0.1) 0%, rgba(0, 212, 170, 0.05) 100%);
+  border-color: var(--cryptorill-balance-primary);
+}

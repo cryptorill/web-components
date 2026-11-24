@@ -1,0 +1,77 @@
+:host {
+  /* Theme-aware colors */
+  --cryptorill-sparkline-bg-dark: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
+  --cryptorill-sparkline-bg-light: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, transparent 100%);
+  --cryptorill-sparkline-bg-gradient: linear-gradient(180deg, rgba(99, 102, 241, 0.1) 0%, transparent 100%);
+
+  --cryptorill-sparkline-radius: 12px;
+
+  display: block;
+  width: 100%;
+}
+
+.cryptorill-sparkline {
+  position: relative;
+  height: 60px;
+  overflow: hidden;
+  border-radius: var(--cryptorill-sparkline-radius);
+  background: var(--cryptorill-sparkline-bg-dark);
+}
+
+/* Theme variants */
+.cr-sparkline--theme-dark {
+  background: var(--cryptorill-sparkline-bg-dark);
+}
+
+.cr-sparkline--theme-light {
+  background: var(--cryptorill-sparkline-bg-light);
+}
+
+.cr-sparkline--theme-gradient {
+  background: var(--cryptorill-sparkline-bg-gradient);
+}
+
+.cr-sparkline__canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Skeleton loading state */
+.cr-sparkline__skeleton {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: inherit;
+  z-index: 1;
+}
+
+.cr-sparkline__skeleton-line {
+  width: 60%;
+  height: 12px;
+  background-color: var(--cryptorill-global-bg-tertiary, #334155);
+  border-radius: 4px;
+  animation: cr-skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+.cr-sparkline__skeleton-line-short {
+  width: 40%;
+  height: 8px;
+  background-color: var(--cryptorill-global-bg-tertiary, #334155);
+  border-radius: 4px;
+  animation: cr-skeleton-pulse 1.5s ease-in-out infinite 0.3s;
+}
+
+@keyframes cr-skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

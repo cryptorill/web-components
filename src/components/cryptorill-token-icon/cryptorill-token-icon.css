@@ -1,0 +1,110 @@
+:host {
+  /* Theme-aware colors */
+  --cryptorill-token-icon-text-light: #f8fafc;
+  --cryptorill-token-icon-text-dark: #0f172a;
+  --cryptorill-token-icon-bg-light: #ffffff;
+  --cryptorill-token-icon-bg-dark: #1e293b;
+  --cryptorill-token-icon-border-light: #e2e8f0;
+  --cryptorill-token-icon-border-dark: #334155;
+
+  /* Default to dark theme colors */
+  --cryptorill-token-icon-text: var(--cryptorill-token-icon-text-light);
+  --cryptorill-token-icon-border: var(--cryptorill-token-icon-border-dark);
+
+  --cryptorill-token-icon-font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  --cryptorill-token-icon-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  display: inline-flex;
+  font-family: var(--cryptorill-token-icon-font-mono);
+}
+
+/* Theme variants */
+.cr-token-icon--theme-dark {
+  --cryptorill-token-icon-text: var(--cryptorill-token-icon-text-light);
+  --cryptorill-token-icon-border: var(--cryptorill-token-icon-border-dark);
+}
+
+.cr-token-icon--theme-light {
+  --cryptorill-token-icon-text: var(--cryptorill-token-icon-text-dark);
+  --cryptorill-token-icon-border: var(--cryptorill-token-icon-border-light);
+}
+
+.cr-token-icon--theme-gradient {
+  --cryptorill-token-icon-text: var(--cryptorill-token-icon-text-light);
+  --cryptorill-token-icon-border: var(--cryptorill-token-icon-border-dark);
+}
+
+.cryptorill-token-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--cryptorill-token-icon-border);
+  transition:
+    transform var(--cryptorill-token-icon-transition-fast),
+    box-shadow var(--cryptorill-token-icon-transition-fast);
+}
+
+.cryptorill-token-icon:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cr-token-icon__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cr-token-icon__initials {
+  font-weight: 700;
+  color: var(--cryptorill-token-icon-text);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  user-select: none;
+}
+
+/* Size variants */
+.cr-token-icon--sm {
+  width: 24px;
+  height: 24px;
+}
+
+.cr-token-icon--sm .cr-token-icon__initials {
+  font-size: 10px;
+}
+
+.cr-token-icon--md {
+  width: 32px;
+  height: 32px;
+}
+
+.cr-token-icon--md .cr-token-icon__initials {
+  font-size: 12px;
+}
+
+.cr-token-icon--lg {
+  width: 48px;
+  height: 48px;
+}
+
+.cr-token-icon--lg .cr-token-icon__initials {
+  font-size: 16px;
+}
+
+/* Gradient theme variant */
+.cr-token-icon--theme-gradient.cryptorill-token-icon {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cryptorill-token-icon {
+    transition: none;
+  }
+
+  .cryptorill-token-icon:hover {
+    transform: none;
+  }
+}

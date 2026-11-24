@@ -1,0 +1,196 @@
+:host {
+  /* Theme-aware colors */
+  --cryptorill-transaction-item-text-light: #f8fafc;
+  --cryptorill-transaction-item-text-dark: #0f172a;
+  --cryptorill-transaction-item-text-muted-light: #94a3b8;
+  --cryptorill-transaction-item-text-muted-dark: #64748b;
+  --cryptorill-transaction-item-bg-light: #ffffff;
+  --cryptorill-transaction-item-bg-dark: #1e293b;
+  --cryptorill-transaction-item-border-light: #e2e8f0;
+  --cryptorill-transaction-item-border-dark: #334155;
+  --cryptorill-transaction-item-success: #2ed573;
+  --cryptorill-transaction-item-danger: #ff4757;
+  --cryptorill-transaction-item-warning: #ffa502;
+  --cryptorill-transaction-item-info: #1e90ff;
+
+  /* Default to dark theme colors */
+  --cryptorill-transaction-item-text: var(--cryptorill-transaction-item-text-light);
+  --cryptorill-transaction-item-text-muted: var(--cryptorill-transaction-item-text-muted-light);
+  --cryptorill-transaction-item-bg: var(--cryptorill-transaction-item-bg-dark);
+  --cryptorill-transaction-item-border: var(--cryptorill-transaction-item-border-dark);
+
+  --cryptorill-transaction-item-font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  --cryptorill-transaction-item-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  display: block;
+  font-family: var(--cryptorill-transaction-item-font-mono);
+}
+
+/* Theme variants */
+.cr-transaction-item--theme-dark {
+  --cryptorill-transaction-item-text: var(--cryptorill-transaction-item-text-light);
+  --cryptorill-transaction-item-text-muted: var(--cryptorill-transaction-item-text-muted-light);
+  --cryptorill-transaction-item-bg: var(--cryptorill-transaction-item-bg-dark);
+  --cryptorill-transaction-item-border: var(--cryptorill-transaction-item-border-dark);
+}
+
+.cr-transaction-item--theme-light {
+  --cryptorill-transaction-item-text: var(--cryptorill-transaction-item-text-dark);
+  --cryptorill-transaction-item-text-muted: var(--cryptorill-transaction-item-text-muted-dark);
+  --cryptorill-transaction-item-bg: var(--cryptorill-transaction-item-bg-light);
+  --cryptorill-transaction-item-border: var(--cryptorill-transaction-item-border-light);
+}
+
+.cr-transaction-item--theme-gradient {
+  --cryptorill-transaction-item-text: var(--cryptorill-transaction-item-text-light);
+  --cryptorill-transaction-item-text-muted: var(--cryptorill-transaction-item-text-muted-light);
+  --cryptorill-transaction-item-bg: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  --cryptorill-transaction-item-border: var(--cryptorill-transaction-item-border-dark);
+}
+
+.cryptorill-transaction-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--cryptorill-transaction-item-bg);
+  border: 1px solid var(--cryptorill-transaction-item-border);
+  border-radius: 8px;
+  transition: background-color var(--cryptorill-transaction-item-transition-fast);
+}
+
+.cryptorill-transaction-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Icon wrapper */
+.cr-transaction-item__icon-wrapper {
+  flex-shrink: 0;
+}
+
+.cr-transaction-item__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.cr-transaction-item__icon--send {
+  background: rgba(255, 71, 87, 0.15);
+  color: var(--cryptorill-transaction-item-danger);
+}
+
+.cr-transaction-item__icon--receive {
+  background: rgba(46, 213, 115, 0.15);
+  color: var(--cryptorill-transaction-item-success);
+}
+
+.cr-transaction-item__icon--swap {
+  background: rgba(30, 144, 255, 0.15);
+  color: var(--cryptorill-transaction-item-info);
+}
+
+.cr-transaction-item__icon--stake {
+  background: rgba(255, 165, 2, 0.15);
+  color: var(--cryptorill-transaction-item-warning);
+}
+
+/* Details section */
+.cr-transaction-item__details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cr-transaction-item__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cr-transaction-item__type {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cryptorill-transaction-item-text);
+}
+
+.cr-transaction-item__time {
+  font-size: 12px;
+  color: var(--cryptorill-transaction-item-text-muted);
+}
+
+.cr-transaction-item__info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--cryptorill-transaction-item-text-muted);
+}
+
+.cr-transaction-item__counterparty {
+  font-family: var(--cryptorill-transaction-item-font-mono);
+}
+
+.cr-transaction-item__fee {
+  color: var(--cryptorill-transaction-item-text-muted);
+}
+
+/* Amount section */
+.cr-transaction-item__amount-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.cr-transaction-item__amount {
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--cryptorill-transaction-item-font-mono);
+}
+
+.cr-transaction-item__amount--send {
+  color: var(--cryptorill-transaction-item-danger);
+}
+
+.cr-transaction-item__amount--receive {
+  color: var(--cryptorill-transaction-item-success);
+}
+
+.cr-transaction-item__amount--swap,
+.cr-transaction-item__amount--stake {
+  color: var(--cryptorill-transaction-item-info);
+}
+
+/* Status */
+.cr-transaction-item__status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cr-transaction-item__status-icon {
+  font-size: 10px;
+}
+
+.cr-transaction-item__status--pending {
+  color: var(--cryptorill-transaction-item-warning);
+}
+
+.cr-transaction-item__status--confirmed {
+  color: var(--cryptorill-transaction-item-success);
+}
+
+.cr-transaction-item__status--failed {
+  color: var(--cryptorill-transaction-item-danger);
+}

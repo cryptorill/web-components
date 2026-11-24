@@ -1,0 +1,289 @@
+:host {
+  /* Theme-aware colors - Dark theme (default) */
+  --cryptorill-market-card-bg-primary-dark: rgba(15, 23, 42, 0.9);
+  --cryptorill-market-card-bg-secondary-dark: rgba(30, 41, 59, 0.6);
+  --cryptorill-market-card-border-dark: rgba(255, 255, 255, 0.08);
+  --cryptorill-market-card-text-primary-dark: #f8fafc;
+  --cryptorill-market-card-text-secondary-dark: #94a3b8;
+  --cryptorill-market-card-text-muted-dark: #64748b;
+  --cryptorill-market-card-positive-dark: #10b981;
+  --cryptorill-market-card-negative-dark: #ef4444;
+
+  /* Light theme colors */
+  --cryptorill-market-card-bg-primary-light: rgba(255, 255, 255, 0.95);
+  --cryptorill-market-card-bg-secondary-light: rgba(248, 250, 252, 0.8);
+  --cryptorill-market-card-border-light: rgba(0, 0, 0, 0.08);
+  --cryptorill-market-card-text-primary-light: #0f172a;
+  --cryptorill-market-card-text-secondary-light: #475569;
+  --cryptorill-market-card-text-muted-light: #94a3b8;
+  --cryptorill-market-card-positive-light: #059669;
+  --cryptorill-market-card-negative-light: #dc2626;
+
+  /* Gradient theme colors */
+  --cryptorill-market-card-bg-primary-gradient: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
+  --cryptorill-market-card-bg-secondary-gradient: rgba(99, 102, 241, 0.1);
+  --cryptorill-market-card-border-gradient: rgba(99, 102, 241, 0.2);
+
+  /* Default to dark theme */
+  --cryptorill-market-card-bg-primary: var(--cryptorill-market-card-bg-primary-dark);
+  --cryptorill-market-card-bg-secondary: var(--cryptorill-market-card-bg-secondary-dark);
+  --cryptorill-market-card-border: var(--cryptorill-market-card-border-dark);
+  --cryptorill-market-card-text-primary: var(--cryptorill-market-card-text-primary-dark);
+  --cryptorill-market-card-text-secondary: var(--cryptorill-market-card-text-secondary-dark);
+  --cryptorill-market-card-text-muted: var(--cryptorill-market-card-text-muted-dark);
+  --cryptorill-market-card-positive: var(--cryptorill-market-card-positive-dark);
+  --cryptorill-market-card-negative: var(--cryptorill-market-card-negative-dark);
+
+  --cryptorill-market-card-font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --cryptorill-market-card-font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+
+  --cryptorill-market-card-radius: 16px;
+  --cryptorill-market-card-radius-sm: 12px;
+
+  --cryptorill-market-card-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --cryptorill-market-card-transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  --cryptorill-market-card-shadow-md: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --cryptorill-market-card-shadow-glow: 0 0 40px rgba(99, 102, 241, 0.15);
+  --cryptorill-market-card-backdrop: blur(20px) saturate(180%);
+
+  display: block;
+  font-family: var(--cryptorill-market-card-font-primary);
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Theme variants */
+.cr-market-card--theme-dark {
+  --cryptorill-market-card-bg-primary: var(--cryptorill-market-card-bg-primary-dark);
+  --cryptorill-market-card-bg-secondary: var(--cryptorill-market-card-bg-secondary-dark);
+  --cryptorill-market-card-border: var(--cryptorill-market-card-border-dark);
+  --cryptorill-market-card-text-primary: var(--cryptorill-market-card-text-primary-dark);
+  --cryptorill-market-card-text-secondary: var(--cryptorill-market-card-text-secondary-dark);
+  --cryptorill-market-card-text-muted: var(--cryptorill-market-card-text-muted-dark);
+  --cryptorill-market-card-positive: var(--cryptorill-market-card-positive-dark);
+  --cryptorill-market-card-negative: var(--cryptorill-market-card-negative-dark);
+}
+
+.cr-market-card--theme-light {
+  --cryptorill-market-card-bg-primary: var(--cryptorill-market-card-bg-primary-light);
+  --cryptorill-market-card-bg-secondary: var(--cryptorill-market-card-bg-secondary-light);
+  --cryptorill-market-card-border: var(--cryptorill-market-card-border-light);
+  --cryptorill-market-card-text-primary: var(--cryptorill-market-card-text-primary-light);
+  --cryptorill-market-card-text-secondary: var(--cryptorill-market-card-text-secondary-light);
+  --cryptorill-market-card-text-muted: var(--cryptorill-market-card-text-muted-light);
+  --cryptorill-market-card-positive: var(--cryptorill-market-card-positive-light);
+  --cryptorill-market-card-negative: var(--cryptorill-market-card-negative-light);
+}
+
+.cr-market-card--theme-gradient {
+  --cryptorill-market-card-bg-primary: var(--cryptorill-market-card-bg-primary-gradient);
+  --cryptorill-market-card-bg-secondary: var(--cryptorill-market-card-bg-secondary-gradient);
+  --cryptorill-market-card-border: var(--cryptorill-market-card-border-gradient);
+}
+
+/* Base Card Styles */
+.cryptorill-market-card {
+  position: relative;
+  padding: 20px;
+  border-radius: var(--cryptorill-market-card-radius);
+  background: var(--cryptorill-market-card-bg-primary);
+  border: 1px solid var(--cryptorill-market-card-border);
+  backdrop-filter: var(--cryptorill-market-card-backdrop);
+  -webkit-backdrop-filter: var(--cryptorill-market-card-backdrop);
+  box-shadow: var(--cryptorill-market-card-shadow-md);
+  overflow: hidden;
+  transition: all var(--cryptorill-market-card-transition-base);
+}
+
+.cryptorill-market-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--cryptorill-market-card-shadow-md), var(--cryptorill-market-card-shadow-glow);
+}
+
+/* Header Section */
+.cr-market-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.cr-market-card__title {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cr-market-card__name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--cryptorill-market-card-text-primary);
+}
+
+.cr-market-card__symbol {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--cryptorill-market-card-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Price Section */
+.cr-market-card__price-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--cryptorill-market-card-border);
+}
+
+/* Charts Section */
+.cr-market-card__charts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: var(--cryptorill-market-card-bg-secondary);
+  border-radius: var(--cryptorill-market-card-radius-sm);
+}
+
+.cr-market-card__sparkline {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Metrics Grid */
+.cr-market-card__metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.cr-market-card__metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  background: var(--cryptorill-market-card-bg-secondary);
+  border-radius: 8px;
+}
+
+.cr-market-card__metric-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--cryptorill-market-card-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cr-market-card__metric-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cryptorill-market-card-text-primary);
+  font-family: var(--cryptorill-market-card-font-mono);
+}
+
+.cr-market-card__metric-value--high {
+  color: var(--cryptorill-market-card-positive);
+}
+
+.cr-market-card__metric-value--low {
+  color: var(--cryptorill-market-card-negative);
+}
+
+/* Volume Section */
+.cr-market-card__volume {
+  padding-top: 12px;
+  border-top: 1px solid var(--cryptorill-market-card-border);
+}
+
+/* Size variants */
+.cr-market-card--sm {
+  padding: 14px;
+}
+
+.cr-market-card--sm .cr-market-card__name {
+  font-size: 14px;
+}
+
+.cr-market-card--sm .cr-market-card__symbol {
+  font-size: 10px;
+}
+
+.cr-market-card--sm .cr-market-card__metrics {
+  gap: 8px;
+}
+
+.cr-market-card--sm .cr-market-card__metric {
+  padding: 8px 10px;
+}
+
+.cr-market-card--sm .cr-market-card__metric-value {
+  font-size: 11px;
+}
+
+.cr-market-card--sm .cr-market-card__charts {
+  padding: 8px;
+  margin-bottom: 12px;
+}
+
+.cr-market-card--lg {
+  padding: 28px;
+}
+
+.cr-market-card--lg .cr-market-card__name {
+  font-size: 18px;
+}
+
+.cr-market-card--lg .cr-market-card__symbol {
+  font-size: 13px;
+}
+
+.cr-market-card--lg .cr-market-card__header {
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.cr-market-card--lg .cr-market-card__price-section {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.cr-market-card--lg .cr-market-card__metrics {
+  gap: 16px;
+}
+
+.cr-market-card--lg .cr-market-card__metric {
+  padding: 14px 16px;
+}
+
+.cr-market-card--lg .cr-market-card__metric-label {
+  font-size: 12px;
+}
+
+.cr-market-card--lg .cr-market-card__metric-value {
+  font-size: 15px;
+}
+
+.cr-market-card--lg .cr-market-card__charts {
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+/* Direction variants for accent colors */
+.cr-market-card--up {
+  border-top: 2px solid var(--cryptorill-market-card-positive);
+}
+
+.cr-market-card--down {
+  border-top: 2px solid var(--cryptorill-market-card-negative);
+}
+
+.cr-market-card--neutral {
+  border-top: 2px solid var(--cryptorill-market-card-text-muted);
+}

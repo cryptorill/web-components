@@ -1,0 +1,162 @@
+:host {
+  /* Theme-aware colors - Dark theme (default) */
+  --cryptorill-order-row-bg-primary-dark: rgba(15, 23, 42, 0.7);
+  --cryptorill-order-row-bg-hover-dark: rgba(30, 41, 59, 0.9);
+  --cryptorill-order-row-border-dark: rgba(255, 255, 255, 0.05);
+  --cryptorill-order-row-text-primary-dark: #f8fafc;
+  --cryptorill-order-row-text-secondary-dark: #94a3b8;
+  --cryptorill-order-row-text-muted-dark: #64748b;
+  --cryptorill-order-row-bid-dark: #10b981;
+  --cryptorill-order-row-ask-dark: #ef4444;
+  --cryptorill-order-row-bid-bg-dark: rgba(16, 185, 129, 0.15);
+  --cryptorill-order-row-ask-bg-dark: rgba(239, 68, 68, 0.15);
+
+  /* Light theme colors */
+  --cryptorill-order-row-bg-primary-light: rgba(255, 255, 255, 0.8);
+  --cryptorill-order-row-bg-hover-light: rgba(248, 250, 252, 0.95);
+  --cryptorill-order-row-border-light: rgba(0, 0, 0, 0.05);
+  --cryptorill-order-row-text-primary-light: #0f172a;
+  --cryptorill-order-row-text-secondary-light: #475569;
+  --cryptorill-order-row-text-muted-light: #94a3b8;
+  --cryptorill-order-row-bid-light: #059669;
+  --cryptorill-order-row-ask-light: #dc2626;
+  --cryptorill-order-row-bid-bg-light: rgba(5, 150, 105, 0.12);
+  --cryptorill-order-row-ask-bg-light: rgba(220, 38, 38, 0.12);
+
+  /* Gradient theme colors */
+  --cryptorill-order-row-bg-primary-gradient: rgba(30, 41, 59, 0.8);
+  --cryptorill-order-row-bg-hover-gradient: rgba(30, 41, 59, 0.95);
+  --cryptorill-order-row-border-gradient: rgba(99, 102, 241, 0.1);
+
+  /* Default to dark theme */
+  --cryptorill-order-row-bg-primary: var(--cryptorill-order-row-bg-primary-dark);
+  --cryptorill-order-row-bg-hover: var(--cryptorill-order-row-bg-hover-dark);
+  --cryptorill-order-row-border: var(--cryptorill-order-row-border-dark);
+  --cryptorill-order-row-text-primary: var(--cryptorill-order-row-text-primary-dark);
+  --cryptorill-order-row-text-secondary: var(--cryptorill-order-row-text-secondary-dark);
+  --cryptorill-order-row-text-muted: var(--cryptorill-order-row-text-muted-dark);
+  --cryptorill-order-row-bid: var(--cryptorill-order-row-bid-dark);
+  --cryptorill-order-row-ask: var(--cryptorill-order-row-ask-dark);
+  --cryptorill-order-row-bid-bg: var(--cryptorill-order-row-bid-bg-dark);
+  --cryptorill-order-row-ask-bg: var(--cryptorill-order-row-ask-bg-dark);
+
+  --cryptorill-order-row-font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --cryptorill-order-row-font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+
+  --cryptorill-order-row-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  display: block;
+  font-family: var(--cryptorill-order-row-font-primary);
+  width: 100%;
+}
+
+/* Theme variants */
+.cr-order-row--theme-dark {
+  --cryptorill-order-row-bg-primary: var(--cryptorill-order-row-bg-primary-dark);
+  --cryptorill-order-row-bg-hover: var(--cryptorill-order-row-bg-hover-dark);
+  --cryptorill-order-row-border: var(--cryptorill-order-row-border-dark);
+  --cryptorill-order-row-text-primary: var(--cryptorill-order-row-text-primary-dark);
+  --cryptorill-order-row-text-secondary: var(--cryptorill-order-row-text-secondary-dark);
+  --cryptorill-order-row-text-muted: var(--cryptorill-order-row-text-muted-dark);
+  --cryptorill-order-row-bid: var(--cryptorill-order-row-bid-dark);
+  --cryptorill-order-row-ask: var(--cryptorill-order-row-ask-dark);
+  --cryptorill-order-row-bid-bg: var(--cryptorill-order-row-bid-bg-dark);
+  --cryptorill-order-row-ask-bg: var(--cryptorill-order-row-ask-bg-dark);
+}
+
+.cr-order-row--theme-light {
+  --cryptorill-order-row-bg-primary: var(--cryptorill-order-row-bg-primary-light);
+  --cryptorill-order-row-bg-hover: var(--cryptorill-order-row-bg-hover-light);
+  --cryptorill-order-row-border: var(--cryptorill-order-row-border-light);
+  --cryptorill-order-row-text-primary: var(--cryptorill-order-row-text-primary-light);
+  --cryptorill-order-row-text-secondary: var(--cryptorill-order-row-text-secondary-light);
+  --cryptorill-order-row-text-muted: var(--cryptorill-order-row-text-muted-light);
+  --cryptorill-order-row-bid: var(--cryptorill-order-row-bid-light);
+  --cryptorill-order-row-ask: var(--cryptorill-order-row-ask-light);
+  --cryptorill-order-row-bid-bg: var(--cryptorill-order-row-bid-bg-light);
+  --cryptorill-order-row-ask-bg: var(--cryptorill-order-row-ask-bg-light);
+}
+
+.cr-order-row--theme-gradient {
+  --cryptorill-order-row-bg-primary: var(--cryptorill-order-row-bg-primary-gradient);
+  --cryptorill-order-row-bg-hover: var(--cryptorill-order-row-bg-hover-gradient);
+  --cryptorill-order-row-border: var(--cryptorill-order-row-border-gradient);
+}
+
+/* Base Row Styles */
+.cryptorill-order-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--cryptorill-order-row-bg-primary);
+  border-bottom: 1px solid var(--cryptorill-order-row-border);
+  transition: background var(--cryptorill-order-row-transition-fast);
+  cursor: pointer;
+}
+
+.cryptorill-order-row:hover {
+  background: var(--cryptorill-order-row-bg-hover);
+}
+
+/* Depth Bar */
+.cr-order-row__depth-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  opacity: 0.3;
+  pointer-events: none;
+  transition: width var(--cryptorill-order-row-transition-fast);
+}
+
+.cr-order-row__depth-bar--bid {
+  background: var(--cryptorill-order-row-bid-bg);
+}
+
+.cr-order-row__depth-bar--ask {
+  background: var(--cryptorill-order-row-ask-bg);
+}
+
+/* Cells */
+.cr-order-row__cell {
+  position: relative;
+  z-index: 1;
+  font-size: 12px;
+  font-family: var(--cryptorill-order-row-font-mono);
+}
+
+/* Price */
+.cr-order-row__price {
+  font-weight: 600;
+}
+
+.cr-order-row__price--bid {
+  color: var(--cryptorill-order-row-bid);
+}
+
+.cr-order-row__price--ask {
+  color: var(--cryptorill-order-row-ask);
+}
+
+/* Amount */
+.cr-order-row__amount {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--cryptorill-order-row-text-primary);
+}
+
+.cr-order-row__amount-symbol {
+  font-size: 10px;
+  color: var(--cryptorill-order-row-text-muted);
+  text-transform: uppercase;
+}
+
+/* Total */
+.cr-order-row__total {
+  text-align: right;
+  color: var(--cryptorill-order-row-text-secondary);
+}

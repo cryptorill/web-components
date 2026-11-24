@@ -1,0 +1,160 @@
+/**
+ * CryptoRill Web Components - Global CSS Variables
+ * 
+ * Shared design tokens and CSS custom properties used across
+ * all CryptoRill web components. These provide consistent theming,
+ * spacing, typography, and animation values.
+ * 
+ * Import this in components that need shared variables.
+ */
+
+/* =================================================================
+   Global Design Tokens
+   ================================================================= */
+
+:host {
+  /* -----------------------------------------------------------------
+     Colors - Theme Agnostic
+     ----------------------------------------------------------------- */
+  --cryptorill-color-primary: #00d4aa;
+  --cryptorill-color-primary-hover: #00b894;
+  --cryptorill-color-success: #10b981;
+  --cryptorill-color-success-light: #2ed573;
+  --cryptorill-color-danger: #ef4444;
+  --cryptorill-color-danger-light: #ff4757;
+  --cryptorill-color-warning: #f59e0b;
+  --cryptorill-color-warning-light: #ffa502;
+  --cryptorill-color-info: #3b82f6;
+  --cryptorill-color-info-light: #1e90ff;
+
+  /* -----------------------------------------------------------------
+     Colors - Dark Theme (Default)
+     ----------------------------------------------------------------- */
+  --cryptorill-dark-bg-primary: rgba(15, 23, 42, 0.95);
+  --cryptorill-dark-bg-secondary: rgba(30, 41, 59, 0.8);
+  --cryptorill-dark-bg-tertiary: rgba(51, 65, 85, 0.6);
+  --cryptorill-dark-text-primary: #f8fafc;
+  --cryptorill-dark-text-secondary: #94a3b8;
+  --cryptorill-dark-text-muted: #64748b;
+  --cryptorill-dark-border: rgba(255, 255, 255, 0.08);
+
+  /* -----------------------------------------------------------------
+     Colors - Light Theme
+     ----------------------------------------------------------------- */
+  --cryptorill-light-bg-primary: rgba(255, 255, 255, 0.98);
+  --cryptorill-light-bg-secondary: rgba(248, 250, 252, 0.9);
+  --cryptorill-light-bg-tertiary: rgba(226, 232, 240, 0.6);
+  --cryptorill-light-text-primary: #0f172a;
+  --cryptorill-light-text-secondary: #475569;
+  --cryptorill-light-text-muted: #94a3b8;
+  --cryptorill-light-border: rgba(0, 0, 0, 0.08);
+
+  /* -----------------------------------------------------------------
+     Colors - Gradient Theme
+     ----------------------------------------------------------------- */
+  --cryptorill-gradient-bg-primary: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
+  --cryptorill-gradient-bg-secondary: rgba(99, 102, 241, 0.1);
+  --cryptorill-gradient-border: rgba(99, 102, 241, 0.2);
+  --cryptorill-gradient-accent: #6366f1;
+
+  /* -----------------------------------------------------------------
+     Typography
+     ----------------------------------------------------------------- */
+  --cryptorill-font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --cryptorill-font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+
+  /* Font sizes */
+  --cryptorill-font-size-xs: 11px;
+  --cryptorill-font-size-sm: 12px;
+  --cryptorill-font-size-md: 14px;
+  --cryptorill-font-size-lg: 16px;
+  --cryptorill-font-size-xl: 18px;
+  --cryptorill-font-size-2xl: 24px;
+  --cryptorill-font-size-3xl: 32px;
+
+  /* Font weights */
+  --cryptorill-font-weight-normal: 400;
+  --cryptorill-font-weight-medium: 500;
+  --cryptorill-font-weight-semibold: 600;
+  --cryptorill-font-weight-bold: 700;
+
+  /* Line heights */
+  --cryptorill-line-height-tight: 1.2;
+  --cryptorill-line-height-normal: 1.5;
+  --cryptorill-line-height-relaxed: 1.75;
+
+  /* -----------------------------------------------------------------
+     Spacing
+     ----------------------------------------------------------------- */
+  --cryptorill-space-1: 4px;
+  --cryptorill-space-2: 8px;
+  --cryptorill-space-3: 12px;
+  --cryptorill-space-4: 16px;
+  --cryptorill-space-5: 20px;
+  --cryptorill-space-6: 24px;
+  --cryptorill-space-8: 32px;
+  --cryptorill-space-10: 40px;
+  --cryptorill-space-12: 48px;
+
+  /* -----------------------------------------------------------------
+     Border Radius
+     ----------------------------------------------------------------- */
+  --cryptorill-radius-sm: 4px;
+  --cryptorill-radius-md: 8px;
+  --cryptorill-radius-lg: 12px;
+  --cryptorill-radius-xl: 16px;
+  --cryptorill-radius-2xl: 20px;
+  --cryptorill-radius-full: 9999px;
+
+  /* -----------------------------------------------------------------
+     Shadows
+     ----------------------------------------------------------------- */
+  --cryptorill-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --cryptorill-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --cryptorill-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+  --cryptorill-shadow-xl: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --cryptorill-shadow-glow: 0 0 40px rgba(99, 102, 241, 0.15);
+
+  /* -----------------------------------------------------------------
+     Transitions
+     ----------------------------------------------------------------- */
+  --cryptorill-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --cryptorill-transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --cryptorill-transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Easing functions */
+  --cryptorill-ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --cryptorill-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --cryptorill-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --cryptorill-ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* -----------------------------------------------------------------
+     Effects
+     ----------------------------------------------------------------- */
+  --cryptorill-backdrop: blur(20px) saturate(180%);
+  --cryptorill-backdrop-sm: blur(10px) saturate(150%);
+
+  /* -----------------------------------------------------------------
+     Focus & Accessibility
+     ----------------------------------------------------------------- */
+  --cryptorill-focus-color: #6366f1;
+  --cryptorill-focus-ring: 0 0 0 2px var(--cryptorill-focus-color);
+  --cryptorill-focus-offset: 2px;
+
+  /* -----------------------------------------------------------------
+     Scrollbar
+     ----------------------------------------------------------------- */
+  --cryptorill-scrollbar-width: 6px;
+  --cryptorill-scrollbar-track: transparent;
+  --cryptorill-scrollbar-thumb: rgba(255, 255, 255, 0.2);
+  --cryptorill-scrollbar-thumb-hover: rgba(255, 255, 255, 0.3);
+
+  /* -----------------------------------------------------------------
+     Z-Index Scale
+     ----------------------------------------------------------------- */
+  --cryptorill-z-dropdown: 100;
+  --cryptorill-z-sticky: 200;
+  --cryptorill-z-modal: 300;
+  --cryptorill-z-popover: 400;
+  --cryptorill-z-tooltip: 500;
+}

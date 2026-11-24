@@ -1,0 +1,21 @@
+/**
+ * CryptoRill Web Components - Global Styles Entry Point
+ * 
+ * Import this file in components that need access to:
+ * - CSS normalization (box-sizing, form resets, etc.)
+ * - Global design tokens (colors, spacing, typography)
+ * - Cross-browser consistency utilities
+ * 
+ * Usage in component CSS:
+ *   @import '../../global/index.css';
+ *   
+ *   :host {
+ *     // Component-specific styles
+ *   }
+ */
+
+/* CSS Reset and Normalization - MUST come first */
+@import './normalize.css';
+
+/* Design Tokens and Variables */
+@import './variables.css';

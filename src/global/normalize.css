@@ -1,0 +1,201 @@
+/**
+ * CryptoRill Web Components - Lightweight CSS Normalize
+ * 
+ * A minimal, targeted CSS reset for cross-browser consistency
+ * specifically designed for Stencil.js Shadow DOM web components.
+ * 
+ * Size: ~400 bytes minified + gzipped
+ */
+
+/* =================================================================
+   Box Model Normalization
+   ================================================================= */
+
+:host {
+  /* Ensure consistent box-sizing within shadow DOM */
+  box-sizing: border-box;
+}
+
+:host *,
+:host *::before,
+:host *::after {
+  box-sizing: inherit;
+}
+
+/* =================================================================
+   Form Elements Normalization
+   ================================================================= */
+
+/* Remove default browser styling from buttons */
+:host button {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-align: inherit;
+}
+
+/* Firefox: Remove inner focus border */
+:host button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/* Remove default browser styling from inputs */
+:host input,
+:host textarea {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  outline: none;
+}
+
+/* Remove clear button from search inputs in IE/Edge */
+:host input::-ms-clear,
+:host input::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Remove number input spinners in Webkit */
+:host input[type='number']::-webkit-inner-spin-button,
+:host input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox: Remove number input spinners */
+:host input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+/* Remove search input decoration in Webkit/Safari */
+:host input[type='search']::-webkit-search-decoration,
+:host input[type='search']::-webkit-search-cancel-button,
+:host input[type='search']::-webkit-search-results-button,
+:host input[type='search']::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+
+/* =================================================================
+   Interactive Elements Normalization
+   ================================================================= */
+
+/* Remove default touch callout on iOS */
+:host * {
+  -webkit-touch-callout: none;
+}
+
+/* Remove tap highlight color on mobile browsers */
+:host * {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Consistent focus outline (can be customized per component) */
+:host *:focus-visible {
+  outline: 2px solid var(--cryptorill-focus-color, #6366f1);
+  outline-offset: 2px;
+}
+
+/* Remove focus outline for mouse users (keep for keyboard) */
+:host *:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* =================================================================
+   Typography Normalization
+   ================================================================= */
+
+/* Improve font rendering on macOS/iOS */
+:host {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Prevent text size adjustment on orientation change in iOS */
+:host {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* =================================================================
+   Media Elements Normalization
+   ================================================================= */
+
+:host img,
+:host svg,
+:host video,
+:host canvas {
+  display: block;
+  max-width: 100%;
+}
+
+/* =================================================================
+   Scrollbar Normalization (Webkit browsers)
+   ================================================================= */
+
+:host * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--cryptorill-scrollbar-thumb, rgba(255, 255, 255, 0.2)) var(--cryptorill-scrollbar-track, transparent);
+}
+
+:host *::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+:host *::-webkit-scrollbar-track {
+  background: var(--cryptorill-scrollbar-track, transparent);
+}
+
+:host *::-webkit-scrollbar-thumb {
+  background: var(--cryptorill-scrollbar-thumb, rgba(255, 255, 255, 0.2));
+  border-radius: 3px;
+}
+
+:host *::-webkit-scrollbar-thumb:hover {
+  background: var(--cryptorill-scrollbar-thumb-hover, rgba(255, 255, 255, 0.3));
+}
+
+/* =================================================================
+   Flexbox/Grid Utilities for Cross-Browser Consistency
+   ================================================================= */
+
+/* Fix flexbox min-width bug in some browsers */
+:host *[class*='flex'],
+:host *[style*='flex'] {
+  min-width: 0;
+  min-height: 0;
+}
+
+/* Fix grid min-width issues */
+:host *[class*='grid'],
+:host *[style*='grid'] {
+  min-width: 0;
+}
+
+/* =================================================================
+   Reduced Motion Support
+   ================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  :host *,
+  :host *::before,
+  :host *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

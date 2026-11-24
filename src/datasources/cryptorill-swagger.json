@@ -1,0 +1,179 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "CryptoRill Consumer API",
+    "description": "API for retrieving cryptocurrency price data",
+    "contact": {
+      "name": "API Support"
+    },
+    "license": {
+      "name": ""
+    },
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Health check endpoint",
+        "description": "Returns the health status of the service.",
+        "operationId": "health_handler",
+        "responses": {
+          "200": {
+            "description": "Service is healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/price": {
+      "get": {
+        "tags": [
+          "price"
+        ],
+        "summary": "Get cryptocurrency price",
+        "description": "Retrieves the current price and 24h change for a given cryptocurrency symbol.",
+        "operationId": "price_handler",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "The cryptocurrency symbol to query (e.g., \"BTC\", \"ETH\")",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Price data retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PriceData"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - symbol is required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Symbol not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ErrorResponse": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message",
+            "example": "symbol is required"
+          }
+        }
+      },
+      "HealthResponse": {
+        "type": "object",
+        "required": [
+          "status",
+          "service"
+        ],
+        "properties": {
+          "service": {
+            "type": "string",
+            "description": "Service name",
+            "example": "cryptorill-consumer-api"
+          },
+          "status": {
+            "type": "string",
+            "description": "Service health status",
+            "example": "healthy"
+          }
+        }
+      },
+      "PriceData": {
+        "type": "object",
+        "required": [
+          "price"
+        ],
+        "properties": {
+          "dayChange": {
+            "type": "string",
+            "description": "The 24-hour price change percentage",
+            "example": "2.5",
+            "nullable": true
+          },
+          "price": {
+            "type": "string",
+            "description": "The current price of the cryptocurrency",
+            "example": "45000.50"
+          }
+        }
+      },
+      "PriceQuery": {
+        "type": "object",
+        "required": [
+          "symbol"
+        ],
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "The cryptocurrency symbol to query (e.g., \"BTC\", \"ETH\")",
+            "example": "BTC"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "price",
+      "description": "Cryptocurrency price endpoints"
+    },
+    {
+      "name": "health",
+      "description": "Health check endpoints"
+    }
+  ]
+}

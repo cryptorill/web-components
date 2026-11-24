@@ -1,0 +1,127 @@
+:host {
+  /* Theme-aware colors */
+  --cryptorill-transaction-list-text-light: #f8fafc;
+  --cryptorill-transaction-list-text-dark: #0f172a;
+  --cryptorill-transaction-list-text-muted-light: #94a3b8;
+  --cryptorill-transaction-list-text-muted-dark: #64748b;
+  --cryptorill-transaction-list-bg-light: #ffffff;
+  --cryptorill-transaction-list-bg-dark: #1e293b;
+  --cryptorill-transaction-list-border-light: #e2e8f0;
+  --cryptorill-transaction-list-border-dark: #334155;
+  --cryptorill-transaction-list-primary: #00d4aa;
+
+  /* Default to dark theme colors */
+  --cryptorill-transaction-list-text: var(--cryptorill-transaction-list-text-light);
+  --cryptorill-transaction-list-text-muted: var(--cryptorill-transaction-list-text-muted-light);
+  --cryptorill-transaction-list-bg: var(--cryptorill-transaction-list-bg-dark);
+  --cryptorill-transaction-list-border: var(--cryptorill-transaction-list-border-dark);
+
+  --cryptorill-transaction-list-font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  --cryptorill-transaction-list-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  display: block;
+  font-family: var(--cryptorill-transaction-list-font-mono);
+}
+
+/* Theme variants */
+.cr-transaction-list--theme-dark {
+  --cryptorill-transaction-list-text: var(--cryptorill-transaction-list-text-light);
+  --cryptorill-transaction-list-text-muted: var(--cryptorill-transaction-list-text-muted-light);
+  --cryptorill-transaction-list-bg: var(--cryptorill-transaction-list-bg-dark);
+  --cryptorill-transaction-list-border: var(--cryptorill-transaction-list-border-dark);
+}
+
+.cr-transaction-list--theme-light {
+  --cryptorill-transaction-list-text: var(--cryptorill-transaction-list-text-dark);
+  --cryptorill-transaction-list-text-muted: var(--cryptorill-transaction-list-text-muted-dark);
+  --cryptorill-transaction-list-bg: var(--cryptorill-transaction-list-bg-light);
+  --cryptorill-transaction-list-border: var(--cryptorill-transaction-list-border-light);
+}
+
+.cr-transaction-list--theme-gradient {
+  --cryptorill-transaction-list-text: var(--cryptorill-transaction-list-text-light);
+  --cryptorill-transaction-list-text-muted: var(--cryptorill-transaction-list-text-muted-light);
+  --cryptorill-transaction-list-bg: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  --cryptorill-transaction-list-border: var(--cryptorill-transaction-list-border-dark);
+}
+
+.cryptorill-transaction-list {
+  background: var(--cryptorill-transaction-list-bg);
+  border: 1px solid var(--cryptorill-transaction-list-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Header */
+.cr-transaction-list__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--cryptorill-transaction-list-border);
+}
+
+.cr-transaction-list__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--cryptorill-transaction-list-text);
+}
+
+.cr-transaction-list__count {
+  font-size: 12px;
+  color: var(--cryptorill-transaction-list-text-muted);
+}
+
+/* Content */
+.cr-transaction-list__content {
+  padding: 8px;
+}
+
+.cr-transaction-list__items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Empty state */
+.cr-transaction-list__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px;
+  gap: 12px;
+}
+
+.cr-transaction-list__empty-icon {
+  font-size: 32px;
+  opacity: 0.5;
+}
+
+.cr-transaction-list__empty-text {
+  font-size: 14px;
+  color: var(--cryptorill-transaction-list-text-muted);
+}
+
+/* Footer */
+.cr-transaction-list__footer {
+  padding: 12px 20px;
+  border-top: 1px solid var(--cryptorill-transaction-list-border);
+  text-align: center;
+}
+
+.cr-transaction-list__view-all {
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cryptorill-transaction-list-primary);
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity var(--cryptorill-transaction-list-transition-fast);
+}
+
+.cr-transaction-list__view-all:hover {
+  opacity: 0.8;
+}

@@ -1,0 +1,159 @@
+:host {
+  /* Theme-aware colors */
+  --cryptorill-network-status-text-light: #f8fafc;
+  --cryptorill-network-status-text-dark: #0f172a;
+  --cryptorill-network-status-text-muted-light: #94a3b8;
+  --cryptorill-network-status-text-muted-dark: #64748b;
+  --cryptorill-network-status-bg-light: #ffffff;
+  --cryptorill-network-status-bg-dark: #1e293b;
+  --cryptorill-network-status-border-light: #e2e8f0;
+  --cryptorill-network-status-border-dark: #334155;
+  --cryptorill-network-status-success: #2ed573;
+  --cryptorill-network-status-warning: #ffa502;
+  --cryptorill-network-status-danger: #ff4757;
+  --cryptorill-network-status-primary: #00d4aa;
+
+  /* Default to dark theme colors */
+  --cryptorill-network-status-text: var(--cryptorill-network-status-text-light);
+  --cryptorill-network-status-text-muted: var(--cryptorill-network-status-text-muted-light);
+  --cryptorill-network-status-bg: var(--cryptorill-network-status-bg-dark);
+  --cryptorill-network-status-border: var(--cryptorill-network-status-border-dark);
+
+  --cryptorill-network-status-font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  --cryptorill-network-status-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  display: block;
+  font-family: var(--cryptorill-network-status-font-mono);
+}
+
+/* Theme variants */
+.cr-network-status--theme-dark {
+  --cryptorill-network-status-text: var(--cryptorill-network-status-text-light);
+  --cryptorill-network-status-text-muted: var(--cryptorill-network-status-text-muted-light);
+  --cryptorill-network-status-bg: var(--cryptorill-network-status-bg-dark);
+  --cryptorill-network-status-border: var(--cryptorill-network-status-border-dark);
+}
+
+.cr-network-status--theme-light {
+  --cryptorill-network-status-text: var(--cryptorill-network-status-text-dark);
+  --cryptorill-network-status-text-muted: var(--cryptorill-network-status-text-muted-dark);
+  --cryptorill-network-status-bg: var(--cryptorill-network-status-bg-light);
+  --cryptorill-network-status-border: var(--cryptorill-network-status-border-light);
+}
+
+.cr-network-status--theme-gradient {
+  --cryptorill-network-status-text: var(--cryptorill-network-status-text-light);
+  --cryptorill-network-status-text-muted: var(--cryptorill-network-status-text-muted-light);
+  --cryptorill-network-status-bg: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  --cryptorill-network-status-border: var(--cryptorill-network-status-border-dark);
+}
+
+.cryptorill-network-status {
+  background: var(--cryptorill-network-status-bg);
+  border: 1px solid var(--cryptorill-network-status-border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+/* Header */
+.cr-network-status__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.cr-network-status__network {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cr-network-status__network-icon {
+  font-size: 18px;
+}
+
+.cr-network-status__network-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cryptorill-network-status-text);
+}
+
+/* Status indicator */
+.cr-network-status__indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.cr-network-status__indicator--online {
+  background: rgba(46, 213, 115, 0.15);
+  color: var(--cryptorill-network-status-success);
+}
+
+.cr-network-status__indicator--degraded {
+  background: rgba(255, 165, 2, 0.15);
+  color: var(--cryptorill-network-status-warning);
+}
+
+.cr-network-status__indicator--offline {
+  background: rgba(255, 71, 87, 0.15);
+  color: var(--cryptorill-network-status-danger);
+}
+
+.cr-network-status__indicator-icon {
+  font-size: 10px;
+  animation: pulse 2s infinite;
+}
+
+.cr-network-status--degraded .cr-network-status__indicator-icon,
+.cr-network-status--offline .cr-network-status__indicator-icon {
+  animation: none;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.cr-network-status__indicator-label {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Metrics */
+.cr-network-status__metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--cryptorill-network-status-border);
+}
+
+.cr-network-status__metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cr-network-status__metric-label {
+  font-size: 11px;
+  color: var(--cryptorill-network-status-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cr-network-status__metric-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cryptorill-network-status-text);
+}

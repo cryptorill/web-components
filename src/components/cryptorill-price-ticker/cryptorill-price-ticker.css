@@ -1,0 +1,476 @@
+:host {
+  /* Theme-aware colors - Dark theme (default) */
+  --cryptorill-price-ticker-bg-primary-dark: rgba(15, 23, 42, 0.85);
+  --cryptorill-price-ticker-bg-secondary-dark: rgba(30, 41, 59, 0.6);
+  --cryptorill-price-ticker-border-dark: rgba(255, 255, 255, 0.08);
+  --cryptorill-price-ticker-text-primary-dark: #f8fafc;
+  --cryptorill-price-ticker-text-secondary-dark: #94a3b8;
+  --cryptorill-price-ticker-text-muted-dark: #64748b;
+
+  /* Light theme colors */
+  --cryptorill-price-ticker-bg-primary-light: rgba(255, 255, 255, 0.9);
+  --cryptorill-price-ticker-bg-secondary-light: rgba(248, 250, 252, 0.6);
+  --cryptorill-price-ticker-border-light: rgba(0, 0, 0, 0.08);
+  --cryptorill-price-ticker-text-primary-light: #0f172a;
+  --cryptorill-price-ticker-text-secondary-light: #475569;
+  --cryptorill-price-ticker-text-muted-light: #94a3b8;
+
+  /* Gradient theme colors */
+  --cryptorill-price-ticker-bg-primary-gradient: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
+  --cryptorill-price-ticker-bg-secondary-gradient: rgba(99, 102, 241, 0.1);
+  --cryptorill-price-ticker-border-gradient: rgba(99, 102, 241, 0.2);
+  --cryptorill-price-ticker-text-primary-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  --cryptorill-price-ticker-text-secondary-gradient: linear-gradient(135deg, #94a3b8 0%, #cbd5e1 100%);
+
+  /* Default to dark theme */
+  --cryptorill-price-ticker-bg-primary: var(--cryptorill-price-ticker-bg-primary-dark);
+  --cryptorill-price-ticker-bg-secondary: var(--cryptorill-price-ticker-bg-secondary-dark);
+  --cryptorill-price-ticker-border: var(--cryptorill-price-ticker-border-dark);
+  --cryptorill-price-ticker-text-primary: var(--cryptorill-price-ticker-text-primary-dark);
+  --cryptorill-price-ticker-text-secondary: var(--cryptorill-price-ticker-text-secondary-dark);
+  --cryptorill-price-ticker-text-muted: var(--cryptorill-price-ticker-text-muted-dark);
+
+  --cryptorill-price-ticker-live: #10b981;
+  --cryptorill-price-ticker-live-pulse: rgba(16, 185, 129, 0.5);
+
+  --cryptorill-price-ticker-gradient-glow: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.3) 0%, transparent 60%);
+
+  --cryptorill-price-ticker-font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --cryptorill-price-ticker-radius: 20px;
+  --cryptorill-price-ticker-radius-sm: 12px;
+
+  --cryptorill-price-ticker-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --cryptorill-price-ticker-transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --cryptorill-price-ticker-transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  --cryptorill-price-ticker-shadow-md: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --cryptorill-price-ticker-shadow-glow: 0 0 40px rgba(99, 102, 241, 0.2);
+  --cryptorill-price-ticker-backdrop: blur(20px) saturate(180%);
+
+  display: block;
+  font-family: var(--cryptorill-price-ticker-font-primary);
+  width: 100%;
+  max-width: 380px;
+}
+
+/* Theme variants */
+.cr-price-ticker--theme-dark {
+  --cryptorill-price-ticker-bg-primary: var(--cryptorill-price-ticker-bg-primary-dark);
+  --cryptorill-price-ticker-bg-secondary: var(--cryptorill-price-ticker-bg-secondary-dark);
+  --cryptorill-price-ticker-border: var(--cryptorill-price-ticker-border-dark);
+  --cryptorill-price-ticker-text-primary: var(--cryptorill-price-ticker-text-primary-dark);
+  --cryptorill-price-ticker-text-secondary: var(--cryptorill-price-ticker-text-secondary-dark);
+  --cryptorill-price-ticker-text-muted: var(--cryptorill-price-ticker-text-muted-dark);
+}
+
+.cr-price-ticker--theme-light {
+  --cryptorill-price-ticker-bg-primary: var(--cryptorill-price-ticker-bg-primary-light);
+  --cryptorill-price-ticker-bg-secondary: var(--cryptorill-price-ticker-bg-secondary-light);
+  --cryptorill-price-ticker-border: var(--cryptorill-price-ticker-border-light);
+  --cryptorill-price-ticker-text-primary: var(--cryptorill-price-ticker-text-primary-light);
+  --cryptorill-price-ticker-text-secondary: var(--cryptorill-price-ticker-text-secondary-light);
+  --cryptorill-price-ticker-text-muted: var(--cryptorill-price-ticker-text-muted-light);
+}
+
+.cr-price-ticker--theme-gradient {
+  --cryptorill-price-ticker-bg-primary: var(--cryptorill-price-ticker-bg-primary-gradient);
+  --cryptorill-price-ticker-bg-secondary: var(--cryptorill-price-ticker-bg-secondary-gradient);
+  --cryptorill-price-ticker-border: var(--cryptorill-price-ticker-border-gradient);
+  --cryptorill-price-ticker-text-primary: var(--cryptorill-price-ticker-text-primary-gradient);
+  --cryptorill-price-ticker-text-secondary: var(--cryptorill-price-ticker-text-secondary-gradient);
+  --cryptorill-price-ticker-text-muted: var(--cryptorill-price-ticker-text-secondary-gradient);
+}
+
+/* Base Card Styles - Glassmorphism */
+.cryptorill-price-ticker {
+  position: relative;
+  padding: 24px;
+  border-radius: var(--cryptorill-price-ticker-radius);
+  background: var(--cryptorill-price-ticker-bg-primary);
+  border: 1px solid var(--cryptorill-price-ticker-border);
+  backdrop-filter: var(--cryptorill-price-ticker-backdrop);
+  -webkit-backdrop-filter: var(--cryptorill-price-ticker-backdrop);
+  box-shadow:
+    var(--cryptorill-price-ticker-shadow-md),
+    var(--cryptorill-price-ticker-shadow-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  transition: all var(--cryptorill-price-ticker-transition-base);
+}
+
+.cryptorill-price-ticker::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--cryptorill-price-ticker-radius);
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(255, 255, 255, 0.05) 100%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.cryptorill-price-ticker:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    var(--cryptorill-price-ticker-shadow-md),
+    0 0 60px rgba(99, 102, 241, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Glow background effect */
+.cr-price-ticker__glow {
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  opacity: 0.08;
+  filter: blur(60px);
+  pointer-events: none;
+  transition: opacity var(--cryptorill-price-ticker-transition-slow);
+}
+
+.cryptorill-price-ticker:hover .cr-price-ticker__glow {
+  opacity: 0.15;
+}
+
+/* Header Section */
+.cr-price-ticker__header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.cr-price-ticker__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--cryptorill-price-ticker-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+  transition: transform var(--cryptorill-price-ticker-transition-fast);
+}
+
+.cryptorill-price-ticker:hover .cr-price-ticker__icon {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+.cr-price-ticker__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.cr-price-ticker__symbol {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--cryptorill-price-ticker-text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.cr-price-ticker__name {
+  font-size: 13px;
+  color: var(--cryptorill-price-ticker-text-secondary);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Live Indicator */
+.cr-price-ticker__live-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.cr-price-ticker__pulse {
+  width: 8px;
+  height: 8px;
+  background: var(--cryptorill-price-ticker-live);
+  border-radius: 50%;
+  position: relative;
+}
+
+.cr-price-ticker__pulse--active::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: var(--cryptorill-price-ticker-live);
+  animation: cr-price-ticker-pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.cr-price-ticker__pulse--active::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: var(--cryptorill-price-ticker-live);
+  animation: cr-price-ticker-pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite 0.5s;
+}
+
+@keyframes cr-price-ticker-pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+.cr-price-ticker__live-text {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--cryptorill-price-ticker-live);
+  letter-spacing: 0.08em;
+}
+
+/* Price Section */
+.cr-price-ticker__price-section {
+  position: relative;
+  z-index: 1;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Sparkline Container */
+.cr-price-ticker__sparkline {
+  margin-top: 20px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Footer */
+.cr-price-ticker__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid var(--cryptorill-price-ticker-border);
+  position: relative;
+  z-index: 1;
+}
+
+.cr-price-ticker__update-label {
+  font-size: 11px;
+  color: var(--cryptorill-price-ticker-text-muted);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.cr-price-ticker__exchange-label {
+  font-size: 11px;
+  color: var(--cryptorill-price-ticker-text-secondary);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Skeleton Loading State */
+.cr-price-ticker__skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cr-price-ticker__skeleton-price {
+  height: 48px;
+  width: 70%;
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.03) 100%);
+  background-size: 200% 100%;
+  animation: cr-price-ticker-shimmer 1.5s infinite;
+}
+
+.cr-price-ticker__skeleton-change {
+  height: 32px;
+  width: 40%;
+  border-radius: 8px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.03) 100%);
+  background-size: 200% 100%;
+  animation: cr-price-ticker-shimmer 1.5s infinite;
+}
+
+@keyframes cr-price-ticker-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Error State */
+.cr-price-ticker__error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.cr-price-ticker__error-icon {
+  font-size: 32px;
+  opacity: 0.8;
+}
+
+.cr-price-ticker__error-text {
+  font-size: 14px;
+  color: var(--cryptorill-price-ticker-text-secondary);
+}
+
+/* Theme Variants */
+
+/* Light Theme */
+.cr-price-ticker--theme-light {
+  --cryptorill-price-ticker-bg-primary: rgba(255, 255, 255, 0.9);
+  --cryptorill-price-ticker-bg-secondary: rgba(248, 250, 252, 0.8);
+  --cryptorill-price-ticker-border: rgba(0, 0, 0, 0.06);
+  --cryptorill-price-ticker-text-primary: #0f172a;
+  --cryptorill-price-ticker-text-secondary: #475569;
+  --cryptorill-price-ticker-text-muted: #94a3b8;
+  --cryptorill-price-ticker-shadow-glow: 0 0 40px rgba(99, 102, 241, 0.1);
+}
+
+.cr-price-ticker--theme-light .cryptorill-price-ticker {
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    0 0 40px rgba(99, 102, 241, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Gradient Theme */
+.cr-price-ticker--theme-gradient {
+  --cryptorill-price-ticker-bg-primary: rgba(15, 23, 42, 0.7);
+}
+
+.cr-price-ticker--theme-gradient .cryptorill-price-ticker {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.1) 50%, rgba(236, 72, 153, 0.05) 100%);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Theme-specific price value colors */
+.cryptorill-price-ticker--theme-light .cr-price__value {
+  color: #1a1a1a;
+}
+
+.cryptorill-price-ticker--theme-dark .cr-price__value {
+  color: #ffffff;
+}
+
+/* Size Variants */
+
+/* Small Size */
+.cr-price-ticker--size-small .cryptorill-price-ticker {
+  padding: 16px;
+  max-width: 280px;
+}
+
+.cr-price-ticker--size-small .cr-price-ticker__icon {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+}
+
+.cr-price-ticker--size-small .cr-price-ticker__symbol {
+  font-size: 18px;
+}
+
+.cr-price-ticker--size-small .cr-price-ticker__price-section {
+  min-height: 60px;
+}
+
+.cr-price-ticker--size-small .cr-price-ticker__sparkline {
+  height: 40px;
+}
+
+/* Large Size */
+.cr-price-ticker--size-large .cryptorill-price-ticker {
+  padding: 32px;
+  max-width: 480px;
+}
+
+.cr-price-ticker--size-large .cr-price-ticker__icon {
+  width: 64px;
+  height: 64px;
+  font-size: 28px;
+}
+
+.cr-price-ticker--size-large .cr-price-ticker__symbol {
+  font-size: 26px;
+}
+
+.cr-price-ticker--size-large .cr-price-ticker__price-section {
+  min-height: 100px;
+}
+
+.cr-price-ticker--size-large .cr-price-ticker__sparkline {
+  height: 80px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+  .cryptorill-price-ticker {
+    padding: 20px;
+  }
+
+  .cr-price-ticker__icon {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+
+  .cr-price-ticker__sparkline {
+    height: 50px;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .cryptorill-price-ticker,
+  .cr-price-ticker__icon,
+  .cr-price-ticker__glow {
+    transition: none;
+    animation: none;
+  }
+
+  .cr-price-ticker__pulse--active::before,
+  .cr-price-ticker__pulse--active::after {
+    animation: none;
+  }
+
+  .cr-price-ticker__skeleton-price,
+  .cr-price-ticker__skeleton-change {
+    animation: none;
+  }
+}

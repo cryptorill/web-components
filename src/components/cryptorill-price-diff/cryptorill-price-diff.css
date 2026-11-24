@@ -1,0 +1,106 @@
+:host {
+  /* Theme-aware colors */
+  --cryptorill-price-diff-positive-dark: #22c55e;
+  --cryptorill-price-diff-positive-light: #16a34a;
+  --cryptorill-price-diff-negative-dark: #ef4444;
+  --cryptorill-price-diff-negative-light: #dc2626;
+
+  /* Default to dark theme colors */
+  --cryptorill-price-diff-positive: var(--cryptorill-price-diff-positive-dark);
+  --cryptorill-price-diff-negative: var(--cryptorill-price-diff-negative-dark);
+
+  --cryptorill-price-diff-font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  --cryptorill-price-diff-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  display: inline-flex;
+}
+
+/* Theme variants */
+.cr-price-diff--theme-dark {
+  --cryptorill-price-diff-positive: var(--cryptorill-price-diff-positive-dark);
+  --cryptorill-price-diff-negative: var(--cryptorill-price-diff-negative-dark);
+}
+
+.cr-price-diff--theme-light {
+  --cryptorill-price-diff-positive: var(--cryptorill-price-diff-positive-light);
+  --cryptorill-price-diff-negative: var(--cryptorill-price-diff-negative-light);
+}
+
+.cr-price-diff--theme-gradient {
+  --cryptorill-price-diff-positive: var(--cryptorill-price-diff-positive-dark);
+  --cryptorill-price-diff-negative: var(--cryptorill-price-diff-negative-dark);
+}
+
+.cryptorill-price-diff {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 10px;
+  font-family: var(--cryptorill-price-diff-font-mono);
+  font-weight: 600;
+  width: fit-content;
+  transition: all var(--cryptorill-price-diff-transition-fast);
+}
+
+/* Direction variants */
+.cr-price-diff--positive {
+  background: rgba(34, 197, 94, 0.1);
+  color: var(--cryptorill-price-diff-positive);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.cr-price-diff--negative {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--cryptorill-price-diff-negative);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.cr-price-diff__arrow {
+  font-size: 10px;
+}
+
+.cr-price-diff__percentage {
+  letter-spacing: -0.01em;
+}
+
+.cr-price-diff__label {
+  opacity: 0.7;
+  font-weight: 500;
+  margin-left: 4px;
+}
+
+/* Size variants */
+.cr-price-diff--small {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.cr-price-diff--small .cr-price-diff__arrow {
+  font-size: 8px;
+}
+
+.cr-price-diff--small .cr-price-diff__label {
+  font-size: 10px;
+}
+
+.cr-price-diff--medium {
+  padding: 8px 14px;
+  font-size: 14px;
+}
+
+.cr-price-diff--medium .cr-price-diff__label {
+  font-size: 11px;
+}
+
+.cr-price-diff--large {
+  padding: 12px 18px;
+  font-size: 16px;
+}
+
+.cr-price-diff--large .cr-price-diff__arrow {
+  font-size: 12px;
+}
+
+.cr-price-diff--large .cr-price-diff__label {
+  font-size: 13px;
+}

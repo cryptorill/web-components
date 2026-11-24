@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "Running pre-push checks..."
+
+# Get essential scripts from package.json
+BUILD_STATUS=$(bun run build)
+BUILD_EXIT=$?
+
+if [ $BUILD_EXIT -ne 0 ]; then
+  echo "❌ Build failed. Please fix the build errors before pushing."
+  exit 1
+fi
+
+echo "✅ Build passed"
+
+# Run tests
+TEST_STATUS=$(bun run test)
+TEST_EXIT=$?
+
+if [ $TEST_EXIT -ne 0 ]; then
+  echo "❌ Tests failed. Please fix the test failures before pushing."
+  exit 1
+fi
+
+echo "✅ All tests passed"
+
+echo "🚀 Push approved!"

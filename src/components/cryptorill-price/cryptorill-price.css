@@ -1,0 +1,163 @@
+:host {
+  /* Theme-aware text colors */
+  --cryptorill-price-text-primary-light: #0f172a;
+  --cryptorill-price-text-primary-dark: #f8fafc;
+  --cryptorill-price-text-secondary-light: #475569;
+  --cryptorill-price-text-secondary-dark: #94a3b8;
+
+  /* Gradient theme colors */
+  --cryptorill-price-text-primary-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  --cryptorill-price-text-secondary-gradient: linear-gradient(135deg, #94a3b8 0%, #cbd5e1 100%);
+
+  /* Default to dark theme colors */
+  --cryptorill-price-text-primary: var(--cryptorill-price-text-primary-dark);
+  --cryptorill-price-text-secondary: var(--cryptorill-price-text-secondary-dark);
+
+  --cryptorill-price-positive: #22c55e;
+  --cryptorill-price-positive-glow: rgba(34, 197, 94, 0.4);
+  --cryptorill-price-negative: #ef4444;
+  --cryptorill-price-negative-glow: rgba(239, 68, 68, 0.4);
+  --cryptorill-price-font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  --cryptorill-price-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  display: inline-flex;
+  font-family: var(--cryptorill-price-font-mono);
+  color-scheme: light dark;
+}
+
+/* Theme variants */
+.cr-price--theme-dark {
+  --cryptorill-price-text-primary: var(--cryptorill-price-text-primary-dark);
+  --cryptorill-price-text-secondary: var(--cryptorill-price-text-secondary-dark);
+}
+
+.cr-price--theme-light {
+  --cryptorill-price-text-primary: var(--cryptorill-price-text-primary-light);
+  --cryptorill-price-text-secondary: var(--cryptorill-price-text-secondary-light);
+}
+
+.cr-price--theme-gradient {
+  --cryptorill-price-text-primary: var(--cryptorill-price-text-primary-gradient);
+  --cryptorill-price-text-secondary: var(--cryptorill-price-text-secondary-gradient);
+}
+
+/* A gradient cannot be used as a `color`. Paint it as text instead. */
+.cr-price--theme-gradient .cr-price__value,
+.cr-price--theme-gradient .cr-price__currency {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.cr-price--theme-gradient .cr-price__value {
+  background-image: var(--cryptorill-price-text-primary-gradient);
+}
+
+.cr-price--theme-gradient .cr-price__currency {
+  background-image: var(--cryptorill-price-text-secondary-gradient);
+}
+
+/* Light theme (system preference) */
+@media (prefers-color-scheme: light) {
+  :host {
+    --cryptorill-price-text-primary: var(--cryptorill-price-text-primary-light);
+    --cryptorill-price-text-secondary: var(--cryptorill-price-text-secondary-light);
+  }
+}
+
+.cryptorill-price {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.cr-price__currency {
+  font-weight: 600;
+  color: var(--cryptorill-price-text-secondary);
+  line-height: 1;
+}
+
+.cr-price__value {
+  font-weight: 700;
+  color: var(--cryptorill-price-text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  transition: color var(--cryptorill-price-transition-fast);
+}
+
+/* Size variants */
+.cr-price--small .cr-price__currency {
+  font-size: 16px;
+  margin-top: 2px;
+}
+
+.cr-price--small .cr-price__value {
+  font-size: 24px;
+}
+
+.cr-price--medium .cr-price__currency {
+  font-size: 20px;
+  margin-top: 3px;
+}
+
+.cr-price--medium .cr-price__value {
+  font-size: 32px;
+}
+
+.cr-price--large .cr-price__currency {
+  font-size: 28px;
+  margin-top: 4px;
+}
+
+.cr-price--large .cr-price__value {
+  font-size: 42px;
+}
+
+/* Flash animations for price changes */
+.cr-price--flash-up .cr-price__value {
+  animation: cr-price-flash-green 0.6s ease-out;
+}
+
+.cr-price--flash-down .cr-price__value {
+  animation: cr-price-flash-red 0.6s ease-out;
+}
+
+/* Keep the flash animation visible while the gradient is clipped to text. */
+.cr-price--theme-gradient.cr-price--flash-up .cr-price__value,
+.cr-price--theme-gradient.cr-price--flash-down .cr-price__value {
+  background-image: none;
+  color: var(--cryptorill-price-text-primary-dark);
+  -webkit-text-fill-color: currentColor;
+}
+
+@keyframes cr-price-flash-green {
+  0%,
+  100% {
+    color: var(--cryptorill-price-text-primary);
+  }
+  30% {
+    color: var(--cryptorill-price-positive);
+    text-shadow: 0 0 20px var(--cryptorill-price-positive-glow);
+  }
+}
+
+@keyframes cr-price-flash-red {
+  0%,
+  100% {
+    color: var(--cryptorill-price-text-primary);
+  }
+  30% {
+    color: var(--cryptorill-price-negative);
+    text-shadow: 0 0 20px var(--cryptorill-price-negative-glow);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cr-price__value {
+    transition: none;
+    animation: none;
+  }
+}

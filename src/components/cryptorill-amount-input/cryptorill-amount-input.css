@@ -1,0 +1,159 @@
+:host {
+  /* Theme-aware colors */
+  --cryptorill-amount-input-text-light: #f8fafc;
+  --cryptorill-amount-input-text-dark: #0f172a;
+  --cryptorill-amount-input-text-muted-light: #94a3b8;
+  --cryptorill-amount-input-text-muted-dark: #64748b;
+  --cryptorill-amount-input-bg-light: #ffffff;
+  --cryptorill-amount-input-bg-dark: #1e293b;
+  --cryptorill-amount-input-border-light: #e2e8f0;
+  --cryptorill-amount-input-border-dark: #334155;
+  --cryptorill-amount-input-primary: #00d4aa;
+  --cryptorill-amount-input-danger: #ff4757;
+
+  /* Default to dark theme colors */
+  --cryptorill-amount-input-text: var(--cryptorill-amount-input-text-light);
+  --cryptorill-amount-input-text-muted: var(--cryptorill-amount-input-text-muted-light);
+  --cryptorill-amount-input-bg: var(--cryptorill-amount-input-bg-dark);
+  --cryptorill-amount-input-border: var(--cryptorill-amount-input-border-dark);
+
+  --cryptorill-amount-input-font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  --cryptorill-amount-input-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  display: block;
+  font-family: var(--cryptorill-amount-input-font-mono);
+}
+
+/* Theme variants */
+.cr-amount-input--theme-dark {
+  --cryptorill-amount-input-text: var(--cryptorill-amount-input-text-light);
+  --cryptorill-amount-input-text-muted: var(--cryptorill-amount-input-text-muted-light);
+  --cryptorill-amount-input-bg: var(--cryptorill-amount-input-bg-dark);
+  --cryptorill-amount-input-border: var(--cryptorill-amount-input-border-dark);
+}
+
+.cr-amount-input--theme-light {
+  --cryptorill-amount-input-text: var(--cryptorill-amount-input-text-dark);
+  --cryptorill-amount-input-text-muted: var(--cryptorill-amount-input-text-muted-dark);
+  --cryptorill-amount-input-bg: var(--cryptorill-amount-input-bg-light);
+  --cryptorill-amount-input-border: var(--cryptorill-amount-input-border-light);
+}
+
+.cr-amount-input--theme-gradient {
+  --cryptorill-amount-input-text: var(--cryptorill-amount-input-text-light);
+  --cryptorill-amount-input-text-muted: var(--cryptorill-amount-input-text-muted-light);
+  --cryptorill-amount-input-bg: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  --cryptorill-amount-input-border: var(--cryptorill-amount-input-border-dark);
+}
+
+.cryptorill-amount-input {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Label */
+.cr-amount-input__label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cryptorill-amount-input-text);
+}
+
+.cr-amount-input__balance {
+  font-size: 11px;
+  color: var(--cryptorill-amount-input-text-muted);
+  font-weight: 400;
+}
+
+/* Input wrapper */
+.cr-amount-input__wrapper {
+  display: flex;
+  align-items: center;
+  background: var(--cryptorill-amount-input-bg);
+  border: 1px solid var(--cryptorill-amount-input-border);
+  border-radius: 8px;
+  padding: 4px;
+  transition: border-color var(--cryptorill-amount-input-transition-fast);
+}
+
+.cr-amount-input--focused .cr-amount-input__wrapper {
+  border-color: var(--cryptorill-amount-input-primary);
+}
+
+.cr-amount-input--error .cr-amount-input__wrapper {
+  border-color: var(--cryptorill-amount-input-danger);
+}
+
+.cr-amount-input--disabled .cr-amount-input__wrapper {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Input field */
+.cr-amount-input__field {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 10px 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--cryptorill-amount-input-text);
+  font-family: var(--cryptorill-amount-input-font-mono);
+  outline: none;
+}
+
+.cr-amount-input__field::placeholder {
+  color: var(--cryptorill-amount-input-text-muted);
+  font-weight: 400;
+}
+
+.cr-amount-input__field:disabled {
+  cursor: not-allowed;
+}
+
+/* Suffix */
+.cr-amount-input__suffix {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-right: 8px;
+}
+
+.cr-amount-input__symbol {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--cryptorill-amount-input-text-muted);
+}
+
+/* Max button */
+.cr-amount-input__max-btn {
+  padding: 4px 10px;
+  background: rgba(0, 212, 170, 0.1);
+  border: 1px solid var(--cryptorill-amount-input-primary);
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--cryptorill-amount-input-primary);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all var(--cryptorill-amount-input-transition-fast);
+}
+
+.cr-amount-input__max-btn:hover:not(:disabled) {
+  background: var(--cryptorill-amount-input-primary);
+  color: white;
+}
+
+.cr-amount-input__max-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Error message */
+.cr-amount-input__error {
+  font-size: 12px;
+  color: var(--cryptorill-amount-input-danger);
+}

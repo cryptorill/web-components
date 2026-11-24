@@ -1,0 +1,838 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>CryptoRill - Modern Crypto Price Cards</title>
+
+    <!-- Modern fonts for 2025/2026 aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <script type="module" src="/build/cryptorill-web-components.esm.js"></script>
+    <script nomodule src="/build/cryptorill-web-components.js"></script>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          'Inter',
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+        min-height: 100vh;
+        padding: 40px 20px;
+        color: #f8fafc;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 700;
+        background: linear-gradient(135deg, #fff 0%, #a5b4fc 50%, #c084fc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 16px;
+        letter-spacing: -0.03em;
+      }
+
+      .subtitle {
+        font-size: 1.25rem;
+        color: #94a3b8;
+        font-weight: 400;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .section {
+        margin-bottom: 60px;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 24px;
+        color: #e2e8f0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .section-title::before {
+        content: '';
+        width: 4px;
+        height: 24px;
+        background: linear-gradient(180deg, #6366f1 0%, #a855f7 100%);
+        border-radius: 2px;
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 24px;
+        justify-items: center;
+      }
+
+      .cards-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        justify-content: center;
+      }
+
+      /* Theme showcase backgrounds */
+      .theme-showcase {
+        padding: 40px;
+        border-radius: 24px;
+        margin-bottom: 24px;
+      }
+
+      .theme-dark {
+        background: rgba(15, 23, 42, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .theme-light {
+        background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+      }
+
+      .theme-gradient {
+        background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+      }
+
+      footer {
+        text-align: center;
+        padding: 40px;
+        color: #64748b;
+        font-size: 0.875rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        margin-top: 60px;
+      }
+
+      footer a {
+        color: #818cf8;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        body {
+          padding: 24px 16px;
+        }
+
+        .cards-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .theme-showcase {
+          padding: 24px;
+        }
+      }
+
+      /* Section descriptions */
+      .cryptorill-section-description {
+        color: #94a3b8;
+        font-size: 1rem;
+        margin-bottom: 24px;
+        line-height: 1.6;
+      }
+
+      /* Price showcase */
+      .cryptorill-price-showcase {
+        padding: 24px;
+        border-radius: 16px;
+        min-width: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Price diff showcase */
+      .cryptorill-diff-showcase {
+        padding: 24px;
+        border-radius: 16px;
+        min-width: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Sparkline showcase */
+      .cryptorill-sparkline-showcase {
+        padding: 24px;
+        border-radius: 16px;
+        min-width: 320px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .cryptorill-showcase-title {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #94a3b8;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>CryptoRill</h1>
+        <p class="subtitle">Modern crypto price cards with 2025/2026 design aesthetics. Glassmorphism, real-time updates, and beautiful micro-interactions.</p>
+      </header>
+
+      <!-- Popular Cryptocurrencies -->
+      <section class="section">
+        <h2 class="section-title">Popular Assets</h2>
+        <div class="cards-grid">
+          <cryptorill-price-ticker symbol="BTC" name="Bitcoin" interval="10000" theme="dark" size="medium"> </cryptorill-price-ticker>
+
+          <cryptorill-price-ticker symbol="ETH" name="Ethereum" interval="10000" theme="dark" size="medium"> </cryptorill-price-ticker>
+
+          <cryptorill-price-ticker symbol="SOL" name="Solana" interval="10000" theme="dark" size="medium"> </cryptorill-price-ticker>
+
+          <cryptorill-price-ticker symbol="ADA" name="Cardano" interval="10000" theme="dark" size="medium"> </cryptorill-price-ticker>
+        </div>
+      </section>
+
+      <!-- Theme Variants -->
+      <section class="section">
+        <h2 class="section-title">Theme Variants</h2>
+
+        <div class="theme-showcase theme-dark">
+          <div class="cards-row">
+            <cryptorill-price-ticker symbol="BTC" interval="15000" theme="dark" size="medium"> </cryptorill-price-ticker>
+
+            <cryptorill-price-ticker symbol="ETH" interval="15000" theme="dark" size="medium"> </cryptorill-price-ticker>
+          </div>
+        </div>
+
+        <div class="theme-showcase theme-light">
+          <div class="cards-row">
+            <cryptorill-price-ticker symbol="DOT" name="Polkadot" interval="15000" theme="light" size="medium"> </cryptorill-price-ticker>
+
+            <cryptorill-price-ticker symbol="LINK" name="Chainlink" interval="15000" theme="light" size="medium"> </cryptorill-price-ticker>
+          </div>
+        </div>
+
+        <div class="theme-showcase theme-gradient">
+          <div class="cards-row">
+            <cryptorill-price-ticker symbol="AVAX" name="Avalanche" interval="15000" theme="gradient" size="medium"> </cryptorill-price-ticker>
+
+            <cryptorill-price-ticker symbol="POL" name="Polygon" interval="15000" theme="gradient" size="medium"> </cryptorill-price-ticker>
+          </div>
+        </div>
+      </section>
+
+      <!-- Size Variants -->
+      <section class="section">
+        <h2 class="section-title">Size Variants</h2>
+        <div class="cards-row">
+          <cryptorill-price-ticker symbol="BTC" interval="20000" theme="dark" size="small"> </cryptorill-price-ticker>
+
+          <cryptorill-price-ticker symbol="BTC" interval="20000" theme="dark" size="medium"> </cryptorill-price-ticker>
+
+          <cryptorill-price-ticker symbol="BTC" interval="20000" theme="dark" size="large"> </cryptorill-price-ticker>
+        </div>
+      </section>
+
+      <!-- Chart Components -->
+      <section class="section">
+        <h2 class="section-title">Charts</h2>
+        <p class="cryptorill-section-description">Canvas-based sparkline charts with gradient fills and smooth curve rendering.</p>
+        <div class="cards-grid">
+          <div class="cryptorill-sparkline-showcase theme-dark">
+            <h3 class="cryptorill-showcase-title">Upward Trend</h3>
+            <cryptorill-sparkline data="[10,15,12,18,22,20,28,25,30,35,32,40,45,42,50]" direction="up" width="280" height="60" smooth="true"></cryptorill-sparkline>
+          </div>
+          <div class="cryptorill-sparkline-showcase theme-dark">
+            <h3 class="cryptorill-showcase-title">Downward Trend</h3>
+            <cryptorill-sparkline data="[50,45,42,40,35,32,30,25,28,22,20,18,15,12,10]" direction="down" width="280" height="60" smooth="true"></cryptorill-sparkline>
+          </div>
+          <div class="cryptorill-sparkline-showcase theme-dark">
+            <h3 class="cryptorill-showcase-title">Small Chart</h3>
+            <cryptorill-sparkline data="[20,25,22,30,28,35,40,38,45,50]" direction="up" width="150" height="40" smooth="true"></cryptorill-sparkline>
+          </div>
+          <div class="cryptorill-sparkline-showcase theme-dark">
+            <h3 class="cryptorill-showcase-title">Large Chart</h3>
+            <cryptorill-sparkline direction="up" width="280" height="100" points="30" smooth="true"></cryptorill-sparkline>
+          </div>
+          <div class="cryptorill-sparkline-showcase theme-dark">
+            <h3 class="cryptorill-showcase-title">Non-smoothed</h3>
+            <cryptorill-sparkline data="[15,20,18,25,22,30,35,32,40,45,42,50,48,55,60]" direction="up" width="280" height="60" smooth="false"></cryptorill-sparkline>
+          </div>
+          <div class="cryptorill-sparkline-showcase theme-dark">
+            <h3 class="cryptorill-showcase-title">Light Theme</h3>
+            <cryptorill-sparkline
+              data="[10,15,12,18,22,20,28,25,30,35,32,40,45,42,50]"
+              direction="up"
+              width="280"
+              height="60"
+              smooth="true"
+              class="sparkline-light"
+            ></cryptorill-sparkline>
+          </div>
+        </div>
+      </section>
+
+      <!-- Token Icons -->
+      <section class="section">
+        <h2 class="section-title">Token Icons</h2>
+        <p class="cryptorill-section-description">Cryptocurrency icons with fallback to generated initials.</p>
+        <div class="cards-row">
+          <div class="cryptorill-price-showcase theme-dark">
+            <cryptorill-token-icon symbol="BTC" size="lg" theme="dark"></cryptorill-token-icon>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark">
+            <cryptorill-token-icon symbol="ETH" size="lg" theme="dark"></cryptorill-token-icon>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark">
+            <cryptorill-token-icon symbol="SOL" size="lg" theme="dark"></cryptorill-token-icon>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark">
+            <cryptorill-token-icon symbol="ADA" size="md" theme="dark"></cryptorill-token-icon>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark">
+            <cryptorill-token-icon symbol="DOT" size="sm" theme="dark"></cryptorill-token-icon>
+          </div>
+        </div>
+      </section>
+
+      <!-- Market Cards -->
+      <section class="section">
+        <h2 class="section-title">Market Cards</h2>
+        <p class="cryptorill-section-description">Comprehensive market data cards with all key metrics.</p>
+        <div class="cards-grid">
+          <cryptorill-market-card
+            symbol="BTC"
+            name="Bitcoin"
+            price="48732.56"
+            change24h="2.45"
+            volume24h="28945000000"
+            market-cap="945000000000"
+            high24h="49500.00"
+            low24h="47200.00"
+            sparkline-data="[47000,47500,47200,48000,48500,48200,48700,49000,48500,48732]"
+            theme="dark"
+            size="md"
+          ></cryptorill-market-card>
+          <cryptorill-market-card
+            symbol="ETH"
+            name="Ethereum"
+            price="2654.32"
+            change24h="-1.23"
+            volume24h="15230000000"
+            market-cap="318000000000"
+            high24h="2700.00"
+            low24h="2580.00"
+            sparkline-data="[2700,2680,2650,2620,2640,2660,2640,2650,2660,2654]"
+            theme="dark"
+            size="md"
+          ></cryptorill-market-card>
+          <cryptorill-market-card
+            symbol="SOL"
+            name="Solana"
+            price="98.45"
+            change24h="5.67"
+            volume24h="3200000000"
+            market-cap="42000000000"
+            high24h="102.00"
+            low24h="92.50"
+            sparkline-data="[93,94,95,96,95,97,98,96,97,98.45]"
+            theme="gradient"
+            size="md"
+          ></cryptorill-market-card>
+        </div>
+      </section>
+
+      <!-- Trading Pairs -->
+      <section class="section">
+        <h2 class="section-title">Trading Pairs</h2>
+        <p class="cryptorill-section-description">Trading pair display with base/quote icons and spread.</p>
+        <div class="cards-row">
+          <div class="cryptorill-price-showcase theme-dark">
+            <cryptorill-trading-pair
+              base-symbol="BTC"
+              quote-symbol="USDT"
+              price="48732.56"
+              change24h="2.45"
+              spread="0.02"
+              show-spread="true"
+              theme="dark"
+              size="md"
+            ></cryptorill-trading-pair>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark">
+            <cryptorill-trading-pair
+              base-symbol="ETH"
+              quote-symbol="USDT"
+              price="2654.32"
+              change24h="-1.23"
+              spread="0.03"
+              show-spread="true"
+              theme="dark"
+              size="md"
+            ></cryptorill-trading-pair>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark">
+            <cryptorill-trading-pair
+              base-symbol="SOL"
+              quote-symbol="USDC"
+              price="98.45"
+              change24h="5.67"
+              spread="0.01"
+              show-spread="true"
+              theme="dark"
+              size="lg"
+            ></cryptorill-trading-pair>
+          </div>
+        </div>
+      </section>
+
+      <!-- Portfolio Items -->
+      <section class="section">
+        <h2 class="section-title">Portfolio Items</h2>
+        <p class="cryptorill-section-description">Portfolio position display with holdings, value, P&L and allocation.</p>
+        <div class="cards-grid">
+          <cryptorill-portfolio-item
+            symbol="BTC"
+            name="Bitcoin"
+            balance="2.456"
+            price="48732.56"
+            value="119692.45"
+            avg-buy-price="42000"
+            pnl="16.03"
+            allocation="45.2"
+            theme="dark"
+            size="full"
+            show-chart="true"
+            chart-data="[42000,43500,45000,44000,46000,47000,48000,47500,48500,48732]"
+          ></cryptorill-portfolio-item>
+          <cryptorill-portfolio-item
+            symbol="ETH"
+            name="Ethereum"
+            balance="15.8"
+            price="2654.32"
+            value="41938.26"
+            avg-buy-price="2800"
+            pnl="-5.2"
+            allocation="15.8"
+            theme="dark"
+            size="full"
+            show-chart="true"
+            chart-data="[2800,2750,2700,2650,2680,2620,2600,2640,2660,2654]"
+          ></cryptorill-portfolio-item>
+          <cryptorill-portfolio-item
+            symbol="SOL"
+            name="Solana"
+            balance="450"
+            price="98.45"
+            value="44302.5"
+            avg-buy-price="85"
+            pnl="15.8"
+            allocation="16.7"
+            theme="gradient"
+            size="compact"
+            show-chart="true"
+            chart-data="[85,88,92,90,95,97,96,99,98,98.45]"
+          ></cryptorill-portfolio-item>
+        </div>
+      </section>
+
+      <!-- Percentage Bars -->
+      <section class="section">
+        <h2 class="section-title">Percentage Bars</h2>
+        <p class="cryptorill-section-description">Horizontal bars showing percentage allocation or dominance.</p>
+        <div class="cards-row">
+          <div class="cryptorill-price-showcase theme-dark" style="min-width: 280px">
+            <cryptorill-percentage-bar value="45.2" label="Bitcoin" show-value="true" theme="dark"></cryptorill-percentage-bar>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark" style="min-width: 280px">
+            <cryptorill-percentage-bar value="16.7" label="Solana" color="#6366f1" show-value="true" theme="dark"></cryptorill-percentage-bar>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark" style="min-width: 280px">
+            <cryptorill-percentage-bar value="75" label="Portfolio" max-value="100" show-value="true" theme="dark"></cryptorill-percentage-bar>
+          </div>
+        </div>
+      </section>
+
+      <!-- Volume Bars -->
+      <section class="section">
+        <h2 class="section-title">Volume Bars</h2>
+        <p class="cryptorill-section-description">Visual volume indicator with bar representation.</p>
+        <div class="cards-row">
+          <div class="cryptorill-price-showcase theme-dark" style="min-width: 220px">
+            <cryptorill-volume-bar volume="28945000000" max-volume="50000000000" label="24h Volume BTC" currency="USD" theme="dark"></cryptorill-volume-bar>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark" style="min-width: 220px">
+            <cryptorill-volume-bar volume="15230000000" max-volume="30000000000" label="24h Volume ETH" currency="USD" theme="dark"></cryptorill-volume-bar>
+          </div>
+        </div>
+      </section>
+
+      <!-- Price Alerts -->
+      <section class="section">
+        <h2 class="section-title">Price Alerts</h2>
+        <p class="cryptorill-section-description">Price alert configuration with above/below conditions.</p>
+        <div class="cards-row">
+          <div class="cryptorill-price-showcase theme-dark" style="min-width: 280px">
+            <cryptorill-price-alert symbol="BTC" current-price="48732.56" target-price="50000" condition="above" is-active="true" theme="dark"></cryptorill-price-alert>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark" style="min-width: 280px">
+            <cryptorill-price-alert symbol="ETH" current-price="2654.32" target-price="2500" condition="below" is-active="false" theme="dark"></cryptorill-price-alert>
+          </div>
+        </div>
+      </section>
+
+      <!-- Network Status -->
+      <section class="section">
+        <h2 class="section-title">Network Status</h2>
+        <p class="cryptorill-section-description">Blockchain network status with health indicators.</p>
+        <div class="cards-row">
+          <div class="cryptorill-price-showcase theme-dark">
+            <cryptorill-network-status network="Ethereum" status="online" block-height="18945632" latency="45" show-details="true" theme="dark"></cryptorill-network-status>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark">
+            <cryptorill-network-status network="Polygon" status="online" block-height="54210987" latency="23" show-details="true" theme="dark"></cryptorill-network-status>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark">
+            <cryptorill-network-status network="Solana" status="degraded" block-height="234567890" latency="250" show-details="true" theme="dark"></cryptorill-network-status>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gas Estimator -->
+      <section class="section">
+        <h2 class="section-title">Gas Estimator</h2>
+        <p class="cryptorill-section-description">Gas fee options with different speed levels.</p>
+        <div class="cards-row">
+          <div class="cryptorill-price-showcase theme-dark" style="min-width: 320px">
+            <cryptorill-gas-estimator
+              network="ethereum"
+              gas-limit="21000"
+              prices='{"slow":20,"standard":35,"fast":55}'
+              selected="standard"
+              token-price="2654.32"
+              token-symbol="ETH"
+              currency="USD"
+              theme="dark"
+            ></cryptorill-gas-estimator>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark" style="min-width: 320px">
+            <cryptorill-gas-estimator
+              network="polygon"
+              gas-limit="65000"
+              prices='{"slow":30,"standard":50,"fast":80}'
+              selected="fast"
+              token-price="0.85"
+              token-symbol="POL"
+              currency="USD"
+              theme="dark"
+            ></cryptorill-gas-estimator>
+          </div>
+        </div>
+      </section>
+
+      <!-- Order Book -->
+      <section class="section">
+        <h2 class="section-title">Order Book</h2>
+        <p class="cryptorill-section-description">Two-column layout with asks and bids visualization.</p>
+        <div class="cards-row">
+          <div class="cryptorill-price-showcase theme-dark" style="min-width: 400px">
+            <cryptorill-order-book
+              book-title="BTC/USD Order Book"
+              currency="USD"
+              crypto-symbol="BTC"
+              asks='[{"price":48950,"amount":0.5,"total":24475},{"price":49000,"amount":1.2,"total":58800},{"price":49100,"amount":0.8,"total":39280},{"price":49200,"amount":2.0,"total":98400}]'
+              bids='[{"price":48700,"amount":1.5,"total":73050},{"price":48650,"amount":0.6,"total":29190},{"price":48600,"amount":2.5,"total":121500},{"price":48500,"amount":1.0,"total":48500}]'
+              max-depth="150000"
+              grouping="0"
+              theme="dark"
+            ></cryptorill-order-book>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trade History -->
+      <section class="section">
+        <h2 class="section-title">Trade History</h2>
+        <p class="cryptorill-section-description">Recent trades with price, amount, and side indicators.</p>
+        <div class="cards-row">
+          <div class="cryptorill-price-showcase theme-dark" style="min-width: 350px">
+            <cryptorill-trade-history
+              pair-symbol="BTC/USDT"
+              currency="$"
+              max-items="8"
+              show-time="true"
+              trades='[{"price":48732.56,"amount":0.25,"side":"buy","time":"2026-02-04T20:30:00Z"},{"price":48728.12,"amount":0.5,"side":"sell","time":"2026-02-04T20:29:45Z"},{"price":48735.00,"amount":0.1,"side":"buy","time":"2026-02-04T20:29:30Z"},{"price":48720.50,"amount":1.2,"side":"sell","time":"2026-02-04T20:29:15Z"},{"price":48745.80,"amount":0.3,"side":"buy","time":"2026-02-04T20:29:00Z"},{"price":48715.25,"amount":0.8,"side":"sell","time":"2026-02-04T20:28:45Z"},{"price":48750.00,"amount":0.15,"side":"buy","time":"2026-02-04T20:28:30Z"}]'
+              theme="dark"
+            ></cryptorill-trade-history>
+          </div>
+          <div class="cryptorill-price-showcase theme-gradient" style="min-width: 350px">
+            <cryptorill-trade-history
+              pair-symbol="ETH/USDC"
+              currency="$"
+              max-items="6"
+              show-time="true"
+              trades='[{"price":2654.32,"amount":2.5,"side":"buy","time":"2026-02-04T20:30:00Z"},{"price":2653.80,"amount":1.8,"side":"sell","time":"2026-02-04T20:29:30Z"},{"price":2655.00,"amount":3.2,"side":"buy","time":"2026-02-04T20:29:00Z"},{"price":2652.50,"amount":0.9,"side":"sell","time":"2026-02-04T20:28:30Z"},{"price":2656.75,"amount":1.5,"side":"buy","time":"2026-02-04T20:28:00Z"}]'
+              theme="gradient"
+            ></cryptorill-trade-history>
+          </div>
+          <div class="cryptorill-price-showcase theme-light" style="min-width: 350px">
+            <cryptorill-trade-history
+              pair-symbol="SOL/USDT"
+              currency="$"
+              max-items="5"
+              show-time="false"
+              trades='[{"price":98.45,"amount":450,"side":"buy","time":"2026-02-04T20:30:00Z"},{"price":98.32,"amount":200,"side":"sell","time":"2026-02-04T20:29:00Z"},{"price":98.60,"amount":350,"side":"buy","time":"2026-02-04T20:28:00Z"},{"price":98.20,"amount":150,"side":"sell","time":"2026-02-04T20:27:00Z"}]'
+              theme="light"
+            ></cryptorill-trade-history>
+          </div>
+        </div>
+      </section>
+
+      <!-- Transaction List -->
+      <section class="section">
+        <h2 class="section-title">Transaction History</h2>
+        <p class="cryptorill-section-description">List of transactions with status indicators.</p>
+        <div class="cards-row">
+          <div class="cryptorill-price-showcase theme-dark" style="min-width: 400px">
+            <cryptorill-transaction-list
+              list-title="Wallet Activity"
+              max-items="6"
+              show-icon="true"
+              theme="dark"
+              transactions='[{"id":"tx1","type":"receive","symbol":"BTC","amount":0.5,"status":"confirmed","timestamp":"2026-02-03T15:30:00Z","from":"1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa","fee":0.0001},{"id":"tx2","type":"send","symbol":"ETH","amount":2.5,"status":"confirmed","timestamp":"2026-02-02T10:15:00Z","to":"0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb","fee":0.0023},{"id":"tx3","type":"swap","symbol":"USDT","amount":1000,"status":"pending","timestamp":"2026-02-04T20:45:00Z","fee":5.0},{"id":"tx4","type":"stake","symbol":"SOL","amount":50,"status":"confirmed","timestamp":"2026-02-01T08:00:00Z","fee":0.0005},{"id":"tx5","type":"receive","symbol":"ETH","amount":5.0,"status":"confirmed","timestamp":"2026-02-04T18:20:00Z","from":"0x8ba...3f2a","fee":0.001},{"id":"tx6","type":"send","symbol":"BTC","amount":0.25,"status":"failed","timestamp":"2026-02-04T14:10:00Z","to":"1BvB...9xK","fee":0.0002}]'
+            ></cryptorill-transaction-list>
+          </div>
+          <div class="cryptorill-price-showcase theme-gradient" style="min-width: 400px">
+            <cryptorill-transaction-list
+              list-title="DeFi Transactions"
+              max-items="4"
+              show-icon="true"
+              theme="gradient"
+              transactions='[{"id":"tx7","type":"swap","symbol":"ETH","amount":3.5,"status":"confirmed","timestamp":"2026-02-04T12:00:00Z","fee":0.005},{"id":"tx8","type":"stake","symbol":"ADA","amount":5000,"status":"confirmed","timestamp":"2026-02-03T09:30:00Z","fee":0.17},{"id":"tx9","type":"swap","symbol":"SOL","amount":100,"status":"pending","timestamp":"2026-02-04T21:00:00Z","fee":0.0001},{"id":"tx10","type":"stake","symbol":"DOT","amount":200,"status":"confirmed","timestamp":"2026-02-02T16:45:00Z","fee":0.02}]'
+            ></cryptorill-transaction-list>
+          </div>
+        </div>
+      </section>
+
+      <!-- Individual Transaction Item -->
+      <section class="section">
+        <h2 class="section-title">Transaction Item</h2>
+        <p class="cryptorill-section-description">Individual transaction display component with all types and statuses.</p>
+        <div class="cards-row">
+          <div class="cryptorill-price-showcase theme-dark" style="min-width: 320px">
+            <cryptorill-transaction-item
+              type="receive"
+              symbol="BTC"
+              amount="0.5"
+              status="confirmed"
+              timestamp="2026-02-03T15:30:00Z"
+              counterparty="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
+              fee="0.0001"
+              theme="dark"
+            ></cryptorill-transaction-item>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark" style="min-width: 320px">
+            <cryptorill-transaction-item
+              type="send"
+              symbol="ETH"
+              amount="2.5"
+              status="pending"
+              timestamp="2026-02-04T20:45:00Z"
+              counterparty="0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb"
+              fee="0.0023"
+              theme="dark"
+            ></cryptorill-transaction-item>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark" style="min-width: 320px">
+            <cryptorill-transaction-item
+              type="swap"
+              symbol="USDT"
+              amount="1000"
+              status="confirmed"
+              timestamp="2026-02-02T10:15:00Z"
+              fee="5.0"
+              theme="dark"
+            ></cryptorill-transaction-item>
+          </div>
+        </div>
+        <div class="cards-row" style="margin-top: 24px">
+          <div class="cryptorill-price-showcase theme-dark" style="min-width: 320px">
+            <cryptorill-transaction-item
+              type="stake"
+              symbol="SOL"
+              amount="500"
+              status="confirmed"
+              timestamp="2026-02-01T08:00:00Z"
+              fee="0.0005"
+              theme="dark"
+            ></cryptorill-transaction-item>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark" style="min-width: 320px">
+            <cryptorill-transaction-item
+              type="send"
+              symbol="BTC"
+              amount="0.25"
+              status="failed"
+              timestamp="2026-02-04T14:10:00Z"
+              counterparty="1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2"
+              fee="0.0002"
+              theme="dark"
+            ></cryptorill-transaction-item>
+          </div>
+          <div class="cryptorill-price-showcase theme-gradient" style="min-width: 320px">
+            <cryptorill-transaction-item
+              type="receive"
+              symbol="ADA"
+              amount="5000"
+              status="confirmed"
+              timestamp="2026-02-04T18:20:00Z"
+              counterparty="addr1qxy2k...g7h9j"
+              fee="0.17"
+              theme="gradient"
+            ></cryptorill-transaction-item>
+          </div>
+        </div>
+      </section>
+
+      <!-- Balance Display -->
+      <section class="section">
+        <h2 class="section-title">Balance Display</h2>
+        <p class="cryptorill-section-description">Wallet balance display with optional fiat equivalent.</p>
+        <div class="cards-row">
+          <div class="cryptorill-price-showcase theme-dark">
+            <cryptorill-balance
+              symbol="BTC"
+              amount="2.456"
+              show-fiat="true"
+              fiat-value="119692.45"
+              fiat-currency="USD"
+              label="Total Balance"
+              theme="dark"
+              size="medium"
+            ></cryptorill-balance>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark">
+            <cryptorill-balance
+              symbol="ETH"
+              amount="15.8"
+              show-fiat="true"
+              fiat-value="41938.26"
+              fiat-currency="USD"
+              label="Available"
+              theme="dark"
+              size="medium"
+            ></cryptorill-balance>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark">
+            <cryptorill-balance symbol="USDT" amount="5000.00" show-fiat="false" label="Stable" theme="dark" size="small"></cryptorill-balance>
+          </div>
+        </div>
+      </section>
+
+      <!-- Amount Input -->
+      <section class="section">
+        <h2 class="section-title">Amount Input</h2>
+        <p class="cryptorill-section-description">Cryptocurrency amount input with formatting and validation.</p>
+        <div class="cards-row">
+          <div class="cryptorill-price-showcase theme-dark" style="min-width: 320px">
+            <cryptorill-amount-input
+              symbol="ETH"
+              value="1.5"
+              decimals="8"
+              available-balance="10.5"
+              show-max-button="true"
+              label="Send Amount"
+              placeholder="0.00"
+              theme="dark"
+            ></cryptorill-amount-input>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark" style="min-width: 320px">
+            <cryptorill-amount-input symbol="BTC" value="0.5" decimals="8" max="2.0" min="0.001" show-max-button="true" label="Amount" theme="dark"></cryptorill-amount-input>
+          </div>
+        </div>
+      </section>
+
+      <!-- Price Display Components -->
+      <section class="section">
+        <h2 class="section-title">Price Display</h2>
+        <p class="cryptorill-section-description">Standalone price display component with currency formatting and flash animations on price changes.</p>
+        <div class="cards-grid">
+          <div class="cryptorill-price-showcase theme-dark">
+            <cryptorill-price value="48732.56" currency="$" size="small"></cryptorill-price>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark">
+            <cryptorill-price value="48732.56" currency="$" size="medium"></cryptorill-price>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark">
+            <cryptorill-price value="48732.56" currency="$" size="large"></cryptorill-price>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark">
+            <cryptorill-price value="2456.78" currency="€" size="medium"></cryptorill-price>
+          </div>
+          <div class="cryptorill-price-showcase theme-dark">
+            <cryptorill-price value="0.00001234" currency="₿" size="medium"></cryptorill-price>
+          </div>
+        </div>
+      </section>
+
+      <!-- Price Change Components -->
+      <section class="section">
+        <h2 class="section-title">Price Changes</h2>
+        <p class="cryptorill-section-description">Visual indicator for price changes with color coding and directional arrows.</p>
+        <div class="cards-grid">
+          <div class="cryptorill-diff-showcase theme-dark">
+            <cryptorill-price-diff value="2.45" label="24h" size="small"></cryptorill-price-diff>
+          </div>
+          <div class="cryptorill-diff-showcase theme-dark">
+            <cryptorill-price-diff value="2.45" label="24h" size="medium"></cryptorill-price-diff>
+          </div>
+          <div class="cryptorill-diff-showcase theme-dark">
+            <cryptorill-price-diff value="2.45" label="24h" size="large"></cryptorill-price-diff>
+          </div>
+          <div class="cryptorill-diff-showcase theme-dark">
+            <cryptorill-price-diff value="-1.23" label="1h" size="medium"></cryptorill-price-diff>
+          </div>
+          <div class="cryptorill-diff-showcase theme-dark">
+            <cryptorill-price-diff value="5.67" label="7d" size="medium"></cryptorill-price-diff>
+          </div>
+          <div class="cryptorill-diff-showcase theme-dark">
+            <cryptorill-price-diff value="0.00" label="24h" size="medium"></cryptorill-price-diff>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <p>Built with Stencil.js • Data provided by CryptoRill API</p>
+        <p style="margin-top: 8px">Design trends: Glassmorphism • Dark Mode • Micro-interactions • 2025/2026</p>
+      </footer>
+    </div>
+  </body>
+</html>
